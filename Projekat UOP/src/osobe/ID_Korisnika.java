@@ -9,13 +9,13 @@ public abstract class ID_Korisnika {
 	protected String brojTelefona;
 	protected String korisnickoIme;
 	protected String lozinka;
-	protected String uloga;
+	protected Uloga uloga;
 	
 	
 	
 	
 	public ID_Korisnika(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, String uloga) {
+			String korisnickoIme, String lozinka, Uloga uloga) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -37,7 +37,7 @@ public abstract class ID_Korisnika {
 		this.brojTelefona="";
 		this.korisnickoIme="";
 		this.lozinka="";
-		this.uloga="";
+		this.uloga=null;
 	}
 
 	public String getIme() {
@@ -104,11 +104,11 @@ public abstract class ID_Korisnika {
 		this.lozinka = lozinka;
 	}
 
-	public String getUloga() {
+	public Uloga getUloga() {
 		return uloga;
 	}
 
-	public void setUloga(String uloga) {
+	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
 	
