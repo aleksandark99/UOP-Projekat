@@ -1,0 +1,2 @@
+Jovana|Jovic|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|MedicinskaSestra|sluzbaOpsteMedicine|200.00
+Jelena|jelic|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|MedicinskaSestra|sluzbaOpsteMedicine|2200.00

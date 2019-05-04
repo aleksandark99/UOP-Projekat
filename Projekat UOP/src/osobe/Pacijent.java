@@ -3,8 +3,8 @@ package osobe;
 import zdravstvena_knjizica.zdravstvena_knjizica;
 
 public class Pacijent extends ID_Korisnika {
-	private Lekar izabraniLekar;
-	private zdravstvena_knjizica knjizica;
+	protected Lekar izabraniLekar;
+	protected zdravstvena_knjizica knjizica;
 	
 	
 	public Pacijent() {
@@ -39,7 +39,25 @@ public class Pacijent extends ID_Korisnika {
 	public void setKnjizica(zdravstvena_knjizica knjizica) {
 		this.knjizica = knjizica;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "ime:"+this.ime+
+				"\nPrezime:"+this.prezime+
+				"\njmbg:"+this.jmbg+
+				"\npol:"+this.pol+
+				"\nadresa:"+this.adresa+
+				"\nbrojTelefona:"+this.brojTelefona+
+				"\nkorisnickoIme:"+this.korisnickoIme+
+				"\nlozinka:"+this.lozinka+
+				"\nbrojKnjizice:"+this.knjizica.getBroj()+
+				"\nizabraniLekar:"+this.izabraniLekar.getIme()+" "+this.izabraniLekar.getPrezime()
+				
+				;
+	
 
+
+	}
 	
 	
 	

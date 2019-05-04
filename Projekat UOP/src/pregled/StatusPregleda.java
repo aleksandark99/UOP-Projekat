@@ -1,5 +1,5 @@
 package pregled;
 
-public enum Status {
+public enum StatusPregleda {
 	zatrazen,zakazan,otkazan,zavrsen;
 }

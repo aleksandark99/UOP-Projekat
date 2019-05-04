@@ -1,43 +1,36 @@
 package zdravstvena_knjizica;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+//import java.sql.Date;
+import java.util.Date;
 
-import osobe.Pacijent;
 
 public class zdravstvena_knjizica {
 	protected int broj;
-	protected Date datumIsteka; //Date po potrebi ?
+	protected Date datumIsteka; 
 	protected KategorijaOsiguranja kategorijaOsiguranja;
-	protected Pacijent pacijent;
 	
 	
 	public zdravstvena_knjizica() {
 		this.broj=0;
 		this.datumIsteka=null;
 		this.kategorijaOsiguranja=null;
-		this.pacijent=new Pacijent();
+
 		
 		
 	}
 	
 
-	public zdravstvena_knjizica(int broj, Date datumIsteka, KategorijaOsiguranja kategorijaOsiguranja, Pacijent pacijent) {
+	public zdravstvena_knjizica(int broj, Date datumIsteka, KategorijaOsiguranja kategorijaOsiguranja ) {
 		super();
 		this.broj = broj;
 		this.datumIsteka = datumIsteka;
 		this.kategorijaOsiguranja = kategorijaOsiguranja;
-		this.pacijent=pacijent;
 	}
 
 
-	public Pacijent getPacijent() {
-		return pacijent;
-	}
 
 
-	public void setPacijent(Pacijent pacijent) {
-		this.pacijent = pacijent;
-	}
 
 
 	public int getBroj() {
@@ -62,6 +55,23 @@ public class zdravstvena_knjizica {
 
 	public void setKategorijaOsiguranja(KategorijaOsiguranja kategorijaOsiguranja) {
 		this.kategorijaOsiguranja = kategorijaOsiguranja;
+	}
+
+
+	@Override
+	public String toString() {
+		SimpleDateFormat datumisteka=new SimpleDateFormat("dd/mm/yyyy");//DODATI VREME 
+		String strDate = datumisteka.format(datumIsteka);  
+		//istek =datumisteka.parse(termin1);
+		// TODO Auto-generated method stub
+		return "broj:"+this.broj+
+				//"\ndatum_isteka:"+this.datumIsteka+
+				"\ndatum_isteka:"+strDate+
+
+				"\nkategorija osiguranja"+this.kategorijaOsiguranja
+				
+				
+				;
 	}
 	
 	
