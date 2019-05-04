@@ -310,7 +310,7 @@ public class DomZdravlja {
 		}
 		return null;
 	}
-	//Za sad nije potrebna funkcija nadjiSestru ali neka ostane ako zatreba
+	//Za sada nije potrebna funkcija nadjiSestru ali neka ostane ako zatreba
 	public Medicinska_Sestra nadjiSestru(String sestraA) {
 		for (Medicinska_Sestra sestra : medicinskaSestre) {
 			if (sestra.getKorisnickoIme().equals(sestraA)) {
@@ -321,7 +321,7 @@ public class DomZdravlja {
 
 
 	}
-	//nema potrebe za nadji pregled metodu
+	//za sadanema potrebe za nadji pregled metodu
 	
 	public void snimiLekare(String imeFajla) {
 		try {
@@ -344,11 +344,90 @@ public class DomZdravlja {
 			System.out.println("Greska prilikom snimanja lekara.");
 		}
 	}
+	public void snimiSestre(String imeFajla) {
+		try {
+			File file = new File("src/files/" + imeFajla);
+			String content = "";
+			for (Medicinska_Sestra sestra : medicinskaSestre) {
+				
+				  content +=sestra.getIme()+"|"+sestra.getPrezime()+"|"+sestra.getJmbg()+"|"+sestra.getPol()+"|"+
+						  sestra.getAdresa()+"|"+sestra.getBrojTelefona()+"|"+sestra.getKorisnickoIme()+
+				 "|"+sestra.getLozinka()
+				  +"|"+sestra.getUloga()+"|"+sestra.getSluzbaZaposlenog()+"|"+
+				  sestra.getPlata()+"\n";
+				 
+				
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja Sestre.");
+		}
+	}
+	public void snimiKnjizice(String imeFajla) {
+		try {
+			File file = new File("src/files/" + imeFajla);
+			String content = "";
+			for (zdravstvena_knjizica knjizica : zdravstvenaKnjizice) {
+				SimpleDateFormat df = new SimpleDateFormat("DD/mm/yyyy");
+				String dateString = df.format( knjizica.getDatumIsteka() );
+				
+			//	Date date = df.parse(toString(knjizica.getDatumIsteka()));
+				  //content +=knjizica.getBroj()+"|"+knjizica.getDatumIsteka()+"|"+knjizica.getKategorijaOsiguranja()+"\n";
+				content +=knjizica.getBroj()+"|"+dateString+"|"+knjizica.getKategorijaOsiguranja()+"\n";
+				
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja Knjizice.");
+		}
+	}
 
 
-
-
-
+	public void snimiPacijente(String imeFajla) {
+		try {
+			File file = new File("src/files/" + imeFajla);
+			String content = "";
+			for (Pacijent pacijent : pacijenti) {
+				
+				  content +=pacijent.getIme()+"|"+pacijent.getPrezime()+"|"+pacijent.getJmbg()+"|"+pacijent.getPol()+"|"+
+						  pacijent.getAdresa()+"|"+pacijent.getBrojTelefona()+"|"+pacijent.getKorisnickoIme()+
+				 "|"+pacijent.getLozinka()
+				  +"|"+pacijent.getUloga()+"|"+pacijent.getIzabraniLekar().getKorisnickoIme()+"|"+pacijent.getKnjizica().getBroj()+"\n";
+				 
+				
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja Pacijenta.");
+		}
+	}
+	
+	public void snimiPreglede(String imeFajla) {
+		try {
+			File file = new File("src/files/" + imeFajla);
+			String content = "";
+			for (Pregled pregled : pregledi) {
+				SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+				String dateString = df.format( pregled.getTermin() );
+				  content +=pregled.getPacijent().getKorisnickoIme()+"|"+pregled.getLekar().getKorisnickoIme()+
+						  "|"+dateString+"|"+pregled.getSoba()+"|"+pregled.getStatus()+"|"+
+						  pregled.getKratak_opis()+"|"+"\n";
+				
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja Pregleda.");
+		}
+	}
+	
 
 
 

@@ -60,7 +60,7 @@ public class zdravstvena_knjizica {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat datumisteka=new SimpleDateFormat("dd/mm/yyyy");//DODATI VREME 
+		SimpleDateFormat datumisteka=new SimpleDateFormat("DD/mm/yyyy");//DODATI VREME 
 		String strDate = datumisteka.format(datumIsteka);  
 		//istek =datumisteka.parse(termin1);
 		// TODO Auto-generated method stub
