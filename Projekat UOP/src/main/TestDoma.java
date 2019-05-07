@@ -1,5 +1,6 @@
 package main;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,9 +49,29 @@ public class TestDoma {
 		Pacijent testPacijent = new Pacijent("testimePacijenta"," testprezime", "12321", "zensko", "perdobrica 13", "022 555-888"," TestkorisnickoIme", "Testlozinka", Uloga.Pacijent,Testlekar,testKnjizica);
 		domzdravlja.dodajPacijenta(testPacijent);
 		domzdravlja.snimiPacijente(PACIJENT_FAJL);
+		////////
+		
+		//Napravi funkciju od ovoga zgodno za ubuduce !
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date TestDate2 = null;
+		String datum="5/5/1998 14:22:33";
+	    try {  
+	    	
+	    	TestDate2 = sdf.parse(datum);  
+	       
+	    } catch (Exception e) {
+			
+		}
 		
 		
-		Date TestDate2 =new Date("5/5/1998 4:22:33");	
+		
+		
+		
+		
+		//////
+		
+		
+	//	Date TestDate2 =new Date("5/5/1998 4:22:33"); OUTDATED METODA vidi kako moze da se kreira dirketno datum i jel moze	
 		Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis");
 		domzdravlja.dodajPreglede(testPregled);
 		domzdravlja.snimiPreglede(PREGLEDI_FAJL);
