@@ -10,11 +10,11 @@ import osobe.Pacijent;
 
 public class Pregled {
 	private Pacijent pacijent;
-	protected Lekar lekar;
-	protected Date termin;
-	protected String soba;
-	protected StatusPregleda statusPregleda;
-	protected String kratak_opis;
+	private Lekar lekar;
+	private Date termin;
+	private String soba;
+	private StatusPregleda statusPregleda;
+	private String kratak_opis;
 	
 	public Pregled() {
 		this.pacijent=new Pacijent();

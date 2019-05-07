@@ -3,8 +3,8 @@ package osobe;
 import zdravstvena_knjizica.zdravstvena_knjizica;
 
 public class Pacijent extends ID_Korisnika {
-	protected Lekar izabraniLekar;
-	protected zdravstvena_knjizica knjizica;
+	private Lekar izabraniLekar;
+	private zdravstvena_knjizica knjizica;
 	
 	
 	public Pacijent() {

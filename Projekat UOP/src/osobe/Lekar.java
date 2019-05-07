@@ -3,7 +3,7 @@ package osobe;
 
 public class Lekar extends Zaposleni {
 	
-	protected String specijalizacija;
+	private String specijalizacija;
 	
 	
 	public Lekar() {

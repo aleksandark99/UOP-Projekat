@@ -6,9 +6,9 @@ import java.util.Date;
 
 
 public class zdravstvena_knjizica {
-	protected int broj;
-	protected Date datumIsteka; 
-	protected KategorijaOsiguranja kategorijaOsiguranja;
+	private int broj;
+	private Date datumIsteka; 
+	private KategorijaOsiguranja kategorijaOsiguranja;
 	
 	
 	public zdravstvena_knjizica() {
