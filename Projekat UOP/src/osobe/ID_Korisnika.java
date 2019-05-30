@@ -10,12 +10,15 @@ public abstract class ID_Korisnika {
 	protected String korisnickoIme;
 	protected String lozinka;
 	protected Uloga uloga;
+	/////////////////////////
+	protected boolean state;
+	
 	
 	
 	
 	
 	public ID_Korisnika(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, Uloga uloga) {
+			String korisnickoIme, String lozinka, Uloga uloga, boolean state) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -26,8 +29,17 @@ public abstract class ID_Korisnika {
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.uloga = uloga;
+		this.state = state;
 	}
 
+	/*
+	 * public ID_Korisnika(String ime, String prezime, String jmbg, String pol,
+	 * String adresa, String brojTelefona, String korisnickoIme, String lozinka,
+	 * Uloga uloga) { super(); this.ime = ime; this.prezime = prezime; this.jmbg =
+	 * jmbg; this.pol = pol; this.adresa = adresa; this.brojTelefona = brojTelefona;
+	 * this.korisnickoIme = korisnickoIme; this.lozinka = lozinka; this.uloga =
+	 * uloga; }
+	 */
 	public ID_Korisnika() {
 		this.ime ="";
 		this.prezime="";
@@ -38,6 +50,7 @@ public abstract class ID_Korisnika {
 		this.korisnickoIme="";
 		this.lozinka="";
 		this.uloga=null;
+		this.state=true;
 	}
 
 	public String getIme() {
@@ -106,6 +119,14 @@ public abstract class ID_Korisnika {
 
 	public Uloga getUloga() {
 		return uloga;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 	public void setUloga(Uloga uloga) {

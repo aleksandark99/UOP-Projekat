@@ -16,11 +16,22 @@ public class Lekar extends Zaposleni {
 
 	public Lekar(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
 			String korisnickoIme, String lozinka, Uloga uloga, double plata, Sluzba sluzbaZaposlenog,
-			String specijalizacija) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzbaZaposlenog);
+			String specijalizacija,boolean state) {
+		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzbaZaposlenog,state);
 		this.specijalizacija = specijalizacija;
 	}
 
+
+
+
+
+	/*
+	 * public Lekar(String ime, String prezime, String jmbg, String pol, String
+	 * adresa, String brojTelefona, String korisnickoIme, String lozinka, Uloga
+	 * uloga, double plata, Sluzba sluzbaZaposlenog, String specijalizacija) {
+	 * super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka,
+	 * uloga, plata, sluzbaZaposlenog); this.specijalizacija = specijalizacija; }
+	 */
 
 
 

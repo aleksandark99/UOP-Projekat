@@ -15,6 +15,7 @@ public class Pregled {
 	private String soba;
 	private StatusPregleda statusPregleda;
 	private String kratak_opis;
+	private boolean state;
 	
 	public Pregled() {
 		this.pacijent=new Pacijent();
@@ -23,9 +24,10 @@ public class Pregled {
 		this.soba="";
 		this.statusPregleda=StatusPregleda.otkazan;
 		this.kratak_opis="";
+		this.state=true;
 	}
 
-	public Pregled(Pacijent pacijent, Lekar lekar, Date termin, String soba, StatusPregleda statusPregleda, String kratak_opis) {
+	public Pregled(Pacijent pacijent, Lekar lekar, Date termin, String soba, StatusPregleda statusPregleda, String kratak_opis,boolean state) {
 		super();
 		this.pacijent = pacijent;
 		this.lekar = lekar;
@@ -33,6 +35,7 @@ public class Pregled {
 		this.soba = soba;
 		this.statusPregleda = statusPregleda;
 		this.kratak_opis = kratak_opis;
+		this.state=state;
 	}
 
 
@@ -84,6 +87,14 @@ public class Pregled {
 
 	public void setKratak_opis(String kratak_opis) {
 		this.kratak_opis = kratak_opis;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 	@Override

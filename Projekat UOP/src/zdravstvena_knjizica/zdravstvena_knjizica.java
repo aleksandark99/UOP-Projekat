@@ -9,23 +9,25 @@ public class zdravstvena_knjizica {
 	private int broj;
 	private Date datumIsteka; 
 	private KategorijaOsiguranja kategorijaOsiguranja;
-	
+	private boolean state;
 	
 	public zdravstvena_knjizica() {
 		this.broj=0;
 		this.datumIsteka=null;
 		this.kategorijaOsiguranja=null;
+		this.state=true;
 
 		
 		
 	}
 	
 
-	public zdravstvena_knjizica(int broj, Date datumIsteka, KategorijaOsiguranja kategorijaOsiguranja ) {
+	public zdravstvena_knjizica(int broj, Date datumIsteka, KategorijaOsiguranja kategorijaOsiguranja,boolean state ) {
 		super();
 		this.broj = broj;
 		this.datumIsteka = datumIsteka;
 		this.kategorijaOsiguranja = kategorijaOsiguranja;
+		this.state=state;
 	}
 
 
@@ -55,6 +57,16 @@ public class zdravstvena_knjizica {
 
 	public void setKategorijaOsiguranja(KategorijaOsiguranja kategorijaOsiguranja) {
 		this.kategorijaOsiguranja = kategorijaOsiguranja;
+	}
+
+
+	public boolean isState() {
+		return state;
+	}
+
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 

@@ -14,8 +14,8 @@ public class Pacijent extends ID_Korisnika {
 
 
 	public Pacijent(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, Uloga uloga, Lekar izabraniLekar, zdravstvena_knjizica knjizica) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga);
+			String korisnickoIme, String lozinka, Uloga uloga, Lekar izabraniLekar, zdravstvena_knjizica knjizica,boolean state) {
+		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga,state);
 		this.izabraniLekar = izabraniLekar;
 		this.knjizica = knjizica;
 	}

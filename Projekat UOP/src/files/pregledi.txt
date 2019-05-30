@@ -1,20 +1,2 @@
-pera123|marko123|16/26/2000 13:26:00|soba|zakazan|opis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:00|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:00|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
- TestkorisnickoIme| TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|
+pera123|marko123|16/26/2000 13:26:00|soba|zakazan|opis|true
+ TestkorisnickoIme| TestkorisnickoIme|05/22/1998 04:22:33|7D|zakazan|testopis|true

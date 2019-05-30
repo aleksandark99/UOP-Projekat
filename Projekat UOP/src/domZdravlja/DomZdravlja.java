@@ -20,8 +20,7 @@ import zdravstvena_knjizica.KategorijaOsiguranja;
 import zdravstvena_knjizica.zdravstvena_knjizica;
 //import java.sql.Date;
 import java.util.Date;
-
-
+import java.util.Scanner;
 //import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 //import java.util.Locale;
@@ -77,19 +76,28 @@ public class DomZdravlja {
 	}
 	
 	public void obrisiLekara(Lekar lekar) {
-		this.lekari.remove(lekar);
+		//this.lekari.remove(lekar);
+		lekar.setState(false);
 	}
 	public void obrisiSestru(Medicinska_Sestra sestra) {
-		this.medicinskaSestre.remove(sestra);
+		//this.medicinskaSestre.remove(sestra);
+		sestra.setState(false);
 	}
 	public void obrisiPacijenta(Pacijent pacijent) {
-		this.pacijenti.remove(pacijent);
+		//this.pacijenti.remove(pacijent);
+		pacijent.setState(false);
+		pacijent.getKnjizica().setState(false);
+		
+		//kada obrisemo pacijenta obrisemo i knjizicu jer nam nije potrebna
+		
 	}
 	public void obrisiPreglede(Pregled pregled) {
-		this.pregledi.remove(pregled);
+		//this.pregledi.remove(pregled);
+		pregled.setState(false);
 	}
 	public void obrisiKnjizicu(zdravstvena_knjizica knjizica) {
-		this.zdravstvenaKnjizice.remove(knjizica);
+		//this.zdravstvenaKnjizice.remove(knjizica);
+		knjizica.setState(false);
 	}
    
 	public void ucitajLekare(String filename) {
@@ -113,7 +121,8 @@ public class DomZdravlja {
 					Sluzba sluzba=Sluzba.valueOf(split[9]);
 					String specijalizacija=split[10];
 					double plata =  Double.parseDouble(split[11]);
-					Lekar lekar = new Lekar(ime,prezime,jmbg,pol,adresa,brojTelefona,korisnickoIme,lozinka,uloga,plata,sluzba,specijalizacija);
+					boolean state=Boolean.parseBoolean(split[12]); 
+					Lekar lekar = new Lekar(ime,prezime,jmbg,pol,adresa,brojTelefona,korisnickoIme,lozinka,uloga,plata,sluzba,specijalizacija,state);
 					lekari.add(lekar);
 				}
 
@@ -140,6 +149,7 @@ public class DomZdravlja {
 				int broj=Integer.parseInt(split[0]);
 				KategorijaOsiguranja kategorijaosiguranja=KategorijaOsiguranja.valueOf(split[2]);
 				String sDate=split[1];
+				boolean state = Boolean.parseBoolean(split[3]); 
 				Date datumistekaknjizice =null;
 				
 				try {
@@ -148,7 +158,7 @@ public class DomZdravlja {
 				}catch(Exception e){
 					
 				}
-				zdravstvena_knjizica knjizica=new zdravstvena_knjizica(broj, datumistekaknjizice , kategorijaosiguranja);
+				zdravstvena_knjizica knjizica=new zdravstvena_knjizica(broj, datumistekaknjizice , kategorijaosiguranja,state);
 				zdravstvenaKnjizice.add(knjizica);
 				
 				
@@ -183,8 +193,9 @@ public class DomZdravlja {
 					Uloga uloga=Uloga.valueOf(split[8]);
 					Sluzba sluzba=Sluzba.valueOf(split[9]);
 					double plata =  Double.parseDouble(split[10]);
+					boolean state = Boolean.parseBoolean(split[11]); 
 					Medicinska_Sestra sestra = new Medicinska_Sestra(ime, prezime, jmbg,
-							pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga,plata,sluzba);
+							pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga,plata,sluzba,state);
 					medicinskaSestre.add(sestra);
 				}
 
@@ -214,6 +225,7 @@ public class DomZdravlja {
 					String korisnickoImeLekara=split[1];
 					Lekar lekar1 = nadjiLekara(korisnickoImeLekara);
 					String opisss=split[5];
+					boolean state = Boolean.parseBoolean(split[6]); 
 					StatusPregleda statusPregleda=StatusPregleda.valueOf(split[4]);
 					String soba=split[3];//ostavi string u slucaju da imamo 7A 3B sobe i slicno...
 					//
@@ -226,7 +238,7 @@ public class DomZdravlja {
 						
 					}
 					//
-					Pregled pregled = new Pregled(pacijent1, lekar1, termin, soba, statusPregleda, opisss);
+					Pregled pregled = new Pregled(pacijent1, lekar1, termin, soba, statusPregleda, opisss,state);
 					pregledi.add(pregled);
 					
 					
@@ -265,11 +277,12 @@ public class DomZdravlja {
 					Lekar LekarB=nadjiLekara(lekarA);
 					int A = Integer.parseInt(split[10]);
 					zdravstvena_knjizica knjizica=nadjiKnjizicu(A);
+					boolean state = Boolean.parseBoolean(split[11]); 
 					//
 					
 					////
 				Pacijent pacijent = new Pacijent(ime,prezime,jmbg,pol,adresa,brojTelefona,
-						korisnickoIme,lozinka,uloga,LekarB,knjizica);
+						korisnickoIme,lozinka,uloga,LekarB,knjizica,state);
 					
 					
 				pacijenti.add(pacijent);
@@ -333,7 +346,7 @@ public class DomZdravlja {
 				  lekar.getAdresa()+"|"+lekar.getBrojTelefona()+"|"+lekar.getKorisnickoIme()+
 				 "|"+lekar.getLozinka()
 				  +"|"+lekar.getUloga()+"|"+lekar.getSluzbaZaposlenog()+"|"+lekar.
-				  getSpecijalizacija()+"|"+ lekar.getPlata()+"\n";
+				  getSpecijalizacija()+"|"+ lekar.getPlata()+"|"+lekar.isState()+"\n";
 				 
 				
 			}
@@ -354,7 +367,7 @@ public class DomZdravlja {
 						  sestra.getAdresa()+"|"+sestra.getBrojTelefona()+"|"+sestra.getKorisnickoIme()+
 				 "|"+sestra.getLozinka()
 				  +"|"+sestra.getUloga()+"|"+sestra.getSluzbaZaposlenog()+"|"+
-				  sestra.getPlata()+"\n";
+				  sestra.getPlata()+"|"+sestra.isState()+"\n";
 				 
 				
 			}
@@ -375,7 +388,7 @@ public class DomZdravlja {
 				
 			//	Date date = df.parse(toString(knjizica.getDatumIsteka()));
 				  //content +=knjizica.getBroj()+"|"+knjizica.getDatumIsteka()+"|"+knjizica.getKategorijaOsiguranja()+"\n";
-				content +=knjizica.getBroj()+"|"+dateString+"|"+knjizica.getKategorijaOsiguranja()+"\n";
+				content +=knjizica.getBroj()+"|"+dateString+"|"+knjizica.getKategorijaOsiguranja()+"|"+knjizica.isState()+"\n";
 				
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -396,7 +409,7 @@ public class DomZdravlja {
 				  content +=pacijent.getIme()+"|"+pacijent.getPrezime()+"|"+pacijent.getJmbg()+"|"+pacijent.getPol()+"|"+
 						  pacijent.getAdresa()+"|"+pacijent.getBrojTelefona()+"|"+pacijent.getKorisnickoIme()+
 				 "|"+pacijent.getLozinka()
-				  +"|"+pacijent.getUloga()+"|"+pacijent.getIzabraniLekar().getKorisnickoIme()+"|"+pacijent.getKnjizica().getBroj()+"\n";
+				  +"|"+pacijent.getUloga()+"|"+pacijent.getIzabraniLekar().getKorisnickoIme()+"|"+pacijent.getKnjizica().getBroj()+"|"+pacijent.isState()+"\n";
 				 
 				
 			}
@@ -417,7 +430,7 @@ public class DomZdravlja {
 				String dateString = df.format( pregled.getTermin() );
 				  content +=pregled.getPacijent().getKorisnickoIme()+"|"+pregled.getLekar().getKorisnickoIme()+
 						  "|"+dateString+"|"+pregled.getSoba()+"|"+pregled.getStatus()+"|"+
-						  pregled.getKratak_opis()+"|"+"\n";
+						  pregled.getKratak_opis()+"|"+pregled.isState()+"\n";
 				
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -431,14 +444,57 @@ public class DomZdravlja {
 
 
 
+///////////////////////////////////////
+	//FUNKCIJE ZA IZMENU(UPDATE)//
+	Scanner keyboard = new Scanner(System.in);
+	
+	////// IME //////////////
+	public void updateImePacijenta(Pacijent pacijent) {
+		System.out.println("unesi novo ime pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setIme(userInput);
+		System.out.println("Novo ime pacijenta:"+pacijent.getIme());
 
+	}
+	public void updateImeLekara(Lekar lekar) {
+		System.out.println("unesi novo ime lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setIme(userInput);
+		System.out.println("Novo ime lekara:"+lekar.getIme());
 
+	}
+	public void updateImeSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novo ime sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setIme(userInput);
+		System.out.println("Novo ime sestre:"+sestra.getIme());
 
+	}
+	////// PREZIME ////
 
+	public void updatePrezimePacijenta(Pacijent pacijent) {
+		System.out.println("unesi novo prezime pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setPrezime(userInput);
+		System.out.println("Novo ime pacijenta:"+pacijent.getPrezime());
 
+	}
+	public void updatePrezimeLekara(Lekar lekar) {
+		System.out.println("unesi novo prezime lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setPrezime(userInput);
+		System.out.println("Novo prezime lekara:"+lekar.getPrezime());
 
+	}
+	public void updatePrezimeSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novo prezime sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setPrezime(userInput);
+		System.out.println("Novo prezime sestre:"+sestra.getPrezime());
 
+	}
 
+//////
 
 
 

@@ -7,8 +7,8 @@ public class Medicinska_Sestra extends Zaposleni {
 	}
 
 	public Medicinska_Sestra(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, Uloga uloga, double plata, Sluzba sluzbaZaposlenog) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzbaZaposlenog);
+			String korisnickoIme, String lozinka, Uloga uloga, double plata, Sluzba sluzbaZaposlenog,boolean state) {
+		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzbaZaposlenog,state);
 	}
 	
 	@Override
