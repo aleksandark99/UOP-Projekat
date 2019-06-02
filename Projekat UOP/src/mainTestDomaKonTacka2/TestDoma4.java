@@ -20,7 +20,7 @@ import pregled.StatusPregleda;
 import zdravstvena_knjizica.KategorijaOsiguranja;
 import zdravstvena_knjizica.zdravstvena_knjizica;
 
-public class TestDoma3 {
+public class TestDoma4 {
 	private static String LEKARI_FAJL = "lekari.txt";
 	private static String PACIJENT_FAJL="pacijenti.txt";
 	private static String KNJIZICE_FAJL="knjizice.txt";
@@ -82,54 +82,14 @@ public class TestDoma3 {
 		
 		System.out.println("Ispis Doma zdravlja pre izmene Lekara,Pacijenta,MedicinskeSestre,Pregleda");
 		Ispis(domzdravlja);
-//		Scanner keyboard = new Scanner(System.in);
 
-//		String ime=keyboard.nextLine();	
-//		keyboard.close();
 		///////////////////
-		//IZMENA PACIJENTA
-//		domzdravlja.updateImePacijenta(testPacijent);
-//		domzdravlja.updatePrezimePacijenta(testPacijent);
-//		domzdravlja.updateJMBGPacijenta(testPacijent);
-//		domzdravlja.updatePolacijenta(testPacijent);
-//		domzdravlja.updateAdresuPacijenta(testPacijent);
-//		domzdravlja.updateBrojPacijenta(testPacijent);
-//		domzdravlja.updateLozinkuPacijenta(testPacijent);
-//		domzdravlja.updateIzabranogLekara(testPacijent, Testlekar1);
-		
-		//IZMENA LEKARA
-//		domzdravlja.updateImeLekara(Testlekar);
-//		domzdravlja.updatePrezimeLekara(Testlekar);
-//		domzdravlja.updateJMBGLekara(Testlekar);
-//		domzdravlja.updatePolLekara(Testlekar);
-//		domzdravlja.updateAdresuLekara(Testlekar);
-//		domzdravlja.updateBrojLekara(Testlekar);
-//		domzdravlja.updateLozinkuLekara(Testlekar);
-//		domzdravlja.updateSluzbuLekara(Testlekar);
-//		domzdravlja.updatePlataLekara(Testlekar);
-		
-		//IZMENA SESTRE
-//		domzdravlja.updateImeSestre(Testsestra);
-//		domzdravlja.updatePrezimeSestre(Testsestra);
-//		domzdravlja.updateJMBGSestre(Testsestra);
-//		domzdravlja.updatePolSestre(Testsestra);
-//		domzdravlja.updateAdresuSestre(Testsestra);
-//		domzdravlja.updateBrojSestre(Testsestra);
-//		domzdravlja.updateLozinkuSestre(Testsestra);
-//		domzdravlja.updateSluzbuSestre(Testsestra);
-//		domzdravlja.updatePlatuSestre(Testsestra);
-		
-		//IZMENA PREGLEDA		
-//		domzdravlja.updateDatumPregleda(testPregled);
-//		domzdravlja.updateSobuPregleda(testPregled);
-//		domzdravlja.updateStatusPregleda(testPregled);
-//		domzdravlja.updateOpisPregleda(testPregled);
-		
-		//IZMENA KNJIZICE PACIJENTA		
-//		domzdravlja.updateDatumIstekaKnjizice(testPacijent);
-//		domzdravlja.updateKategorijuOsiguranja(testPacijent);
-
-		System.out.println("Ispis Doma zdravlja posle izmene Lekara,Pacijenta,MedicinskeSestre,Pregleda");
+		//DODAVANJE PACIJENTA
+		domzdravlja.dodajNovogPacijenta();//POPRAVI
+	//	domzdravlja.dodajNovogLekara();
+	//	domzdravlja.dodajNovuSestru();
+	//	domzdravlja.dodajNoviPregled();
+		System.out.println("Ispis Doma zdravlja posle dodavanja Lekara,Pacijenta,MedicinskeSestre,Pregleda");
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
@@ -193,8 +153,7 @@ public class TestDoma3 {
 			}
 		}
 		
-	}
+	}}
 
 	
 	
-}

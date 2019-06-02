@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import javax.net.ssl.SSLEngineResult.Status;
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 import java.text.DateFormat;
 //import java.text.DateFormat;
@@ -796,34 +797,299 @@ public class DomZdravlja {
 		System.out.println("Novi kategorija osiguranja:"+ pacijent.getKnjizica().getKategorijaOsiguranja());
 	}
 	
+	//DODAVANJE//
 	
+	public void dodajNovogPacijenta() {
+		
 	
-	
-	
-	
-//IDEJA ZA TESTIRANJE PREVISE NAPORNA i NEDOVRSENA	
-//	public void izmeniPacijenta(Pacijent pacijent,ArrayList<Pacijent> pacijenti) {
-//		System.out.println("Izabrite Pacijenta za izmenu-(unesite njegovo korisnicko ime ");
-//		//ispisi pacijente
-//		for(Pacijent pacijentA : pacijenti) {
-//			if(pacijentA.isState()==true) {
-//				
-//		System.out.println(pacijent + "\n"); 
-//			}
-//		}
-//		
-//		String userInput=keyboard.nextLine();
-//		Pacijent pacijentZaIzmenu=nadjiPacijenta(userInput);
-//		System.out.println("izaberite sta zelite da izmenite");
-//		switch (izbor)
-//	}
-//
-//
-//
-//
+		Scanner unoss = new Scanner(System.in);
 
+		System.out.println("Unesi parametre za pacijenta");
+		System.out.println("ime:");
+		String ime=unoss.nextLine();	
+		System.out.println("prezime:");
+		String prezime=unoss.nextLine();	
+		System.out.println("jmbg:");
+		String jmbg=unoss.nextLine();	
+		System.out.println("pol:");
+		String pol=unoss.nextLine();	
+		System.out.println("adresa:");
+		String adresa=unoss.nextLine();	
+		System.out.println("brojTelefona:");
+		String brojTelefona=unoss.nextLine();	
+		System.out.println("korisnickoIme:");
+		String korisnickoIme=keyboard.nextLine();	
+		System.out.println("lozinka:");
+		String lozinka =unoss.nextLine();	
+		Uloga  uloga=Uloga.Pacijent;
+		System.out.println("Izaberite lekara");
+		for(Lekar lekar : lekari) {
+			if(lekar.isState()==true) {			
+			System.out.println(lekar + "\n");
+			}			
+		}
+		System.out.println("Unesite korisnicko ime lekara");
+		String strLekar = unoss.nextLine();
+		Lekar izabraniLekar=nadjiLekara(strLekar);
+		zdravstvena_knjizica knjizica = new zdravstvena_knjizica();
+		//
+		Scanner dd = new Scanner(System.in);
+
+		System.out.println("Unesi Datum isteka knjizice dd/mm/yyyy");
+		//
+	//	dd.hasNextLine();
+		String userInput=dd.nextLine();
+		
+		
+		
+		
+		
+		DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		Date datumIsteka = null;
+	    try {  	    	
+	    	datumIsteka = sdf.parse(userInput);	       
+	    } catch (Exception e) {}
+	    //
+		System.out.println("Unesi broj kjnizice");
+		int broj = unoss.nextInt();
+		knjizica.setBroj(broj);
+		System.out.println("Izaneri kategoriju osiguranja \n1.Prva \n2.Druga \n3.Treca");
+		int izbor = unoss.nextInt();
+		KategorijaOsiguranja kat=null;
+		if (izbor==1) {
+			kat=KategorijaOsiguranja.prva;
+		}else if(izbor==2) {
+			kat=KategorijaOsiguranja.druga;			
+		}else if(izbor==3){
+			kat=KategorijaOsiguranja.treca;
+
+		}
+		knjizica.setKategorijaOsiguranja(kat);
+		unoss.close();
+
+	    knjizica.setDatumIsteka(datumIsteka);
+		//
+		//Pacijent pacijent = new Pacijent(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, izabraniLekar, knjizica, true);
+		//Pacijent pacijent = new Pacijent();
+		Pacijent pacijent = new Pacijent(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, izabraniLekar, knjizica, true);
+		pacijenti.add(pacijent);
+		zdravstvenaKnjizice.add(pacijent.getKnjizica());
+		unoss.close();
+		
+	}
 	
+	//PRAVLJENJE KNJIZICE
+	public zdravstvena_knjizica Novaknjizica() {
+		System.out.println("Broj knjizice:");
+		int broj = keyboard.nextInt();	
+    	
+		
+		String poludecu = keyboard.nextLine();
 
+		System.out.println("UNESI Datum isteka: dd/MM/yyyy HH:mm:ss");				
+		System.out.println("GGGGGGGG");
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+ //   	String userInput=keyboard.nextLine();		
 
+		Date datumIsteka = null;
+	    try {
+	    	datumIsteka = sdf.parse(poludecu);	       
+	    } catch (Exception e) {}
+		System.out.println("gggg");
+		System.out.println("Karegorija osiguranja:");
+		
+//		KategorijaOsiguranja kato =nadjiOsiguranje();
+
+		
+		zdravstvena_knjizica knjizica = new zdravstvena_knjizica(broj, datumIsteka, KategorijaOsiguranja.druga, true);
+//	    zdravstvena_knjizica knjizica = new zdravstvena_knjizica();
+		return knjizica;
+	}
+	
+	//IZABIR KATEGORIJE OSIGURANJA
+	public KategorijaOsiguranja nadjiOsiguranje() {
+		KategorijaOsiguranja kato=null;
+		System.out.println("UNESI KATEGORIJU OSIGRANJA");
+		String izabir=keyboard.nextLine();	
+
+		switch (izabir) {
+		case "1":
+			kato=KategorijaOsiguranja.prva;
+			break;
+		case "2":
+			kato=KategorijaOsiguranja.druga;
+			break;
+		case "3":		
+			kato=KategorijaOsiguranja.treca;
+			
+			break;
+			}
+		return kato;
+	}
+	
+	//DODAJ LEKARA
+	public void dodajNovogLekara() {
+		Scanner unoss = new Scanner(System.in);
+
+		System.out.println("ime:");
+		String ime=keyboard.nextLine();	
+		System.out.println("prezime:");
+		String prezime=keyboard.nextLine();	
+		System.out.println("jmbg:");
+		String jmbg=keyboard.nextLine();	
+		System.out.println("pol:");
+		String pol=keyboard.nextLine();	
+		System.out.println("adresa:");
+		String adresa=keyboard.nextLine();	
+		System.out.println("brojTelefona:");
+		String brojTelefona=keyboard.nextLine();	
+		System.out.println("korisnickoIme:");
+		String korisnickoIme=keyboard.nextLine();	
+		System.out.println("lozinka:");
+		String lozinka =keyboard.nextLine();	
+		System.out.println("plata:");
+		double plata =keyboard.nextDouble();	
+		Uloga uloga =Uloga.Lekar;
+		System.out.println("specijalizacija:");
+		String specijalizacija  =unoss.nextLine(); 
+		System.out.println("Unesi sluzbu \n 1:sluzbaOpsteMedicine \n2.stomatoloskaSluzba \n3.sluzbaZdravstvneneZastiteRadnika \n4.SluzbaZdravstveneZastiteDece.");
+		//Sluzba sluzba = Sluzba.sluzbaOpsteMedicine;
+		int izbor = unoss.nextInt();
+//		Sluzba sluzba=null;
+		Sluzba sluzba=Sluzba.sluzbaOpsteMedicine;
+		if(izbor==1) {
+			 sluzba=Sluzba.sluzbaOpsteMedicine;
+		}else if (izbor==2) {
+			 sluzba=Sluzba.stomatoloskaSluzba;	
+			 System.out.println(sluzba);
+		}else if (izbor==3) {
+			 sluzba=Sluzba.sluzbaZdravstvneneZastiteRadnika;
+			
+		}else if (izbor==4) {
+			 sluzba=Sluzba.SluzbaZdravstveneZastiteDece;
+			
+		}
+		else {
+			 sluzba=Sluzba.sluzbaOpsteMedicine;
+		}
+		
+		unoss.close();
+		//
+		
+		
+		
+		Lekar lekar = new Lekar(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzba, specijalizacija, true);
+		lekari.add(lekar);
+	}
+
+	//DODAJ SESTRU	
+	public void dodajNovuSestru() {
+		Scanner unoss = new Scanner(System.in);
+
+		System.out.println("ime:");
+		String ime=keyboard.nextLine();	
+		System.out.println("prezime:");
+		String prezime=keyboard.nextLine();	
+		System.out.println("jmbg:");
+		String jmbg=keyboard.nextLine();	
+		System.out.println("pol:");
+		String pol=keyboard.nextLine();	
+		System.out.println("adresa:");
+		String adresa=keyboard.nextLine();	
+		System.out.println("brojTelefona:");
+		String brojTelefona=keyboard.nextLine();	
+		System.out.println("korisnickoIme:");
+		String korisnickoIme=keyboard.nextLine();	
+		System.out.println("lozinka:");
+		String lozinka =keyboard.nextLine();	
+		System.out.println("plata:");
+		double plata =keyboard.nextDouble();	
+		Uloga uloga =Uloga.MedicinskaSestra;
+
+		System.out.println("Unesi sluzbu \n1:sluzbaOpsteMedicine \n2.stomatoloskaSluzba \n3.sluzbaZdravstvneneZastiteRadnika \n4.SluzbaZdravstveneZastiteDece \n5.sluzbaZaTehnickePoslove \n6.sluzbaZaPravneIekonomskePoslove");
+		//Sluzba sluzba = Sluzba.sluzbaOpsteMedicine;
+		int izbor = unoss.nextInt();
+//		Sluzba sluzba=null;
+		Sluzba sluzba=Sluzba.sluzbaOpsteMedicine;
+		if(izbor==1) {
+			 sluzba=Sluzba.sluzbaOpsteMedicine;
+		}else if (izbor==2) {
+			 sluzba=Sluzba.stomatoloskaSluzba;	
+			 System.out.println(sluzba);
+		}else if (izbor==3) {
+			 sluzba=Sluzba.sluzbaZdravstvneneZastiteRadnika;
+			
+		}else if (izbor==4) {
+			 sluzba=Sluzba.SluzbaZdravstveneZastiteDece;
+			
+		}else if (izbor==5) {
+			 sluzba=Sluzba.sluzbaZaTehnickePoslove;
+				
+		}else if (izbor==6) {
+			 sluzba=Sluzba.sluzbaZaPravneIekonomskePoslove;
+				
+		}
+		else {
+			 sluzba=Sluzba.sluzbaOpsteMedicine;
+		}
+		
+		unoss.close();
+		//
+		Medicinska_Sestra sestra = new Medicinska_Sestra(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, plata, sluzba, true);
+		medicinskaSestre.add(sestra);
+				
+	}
+	
+	//DODAJ PREGLED
+	//PROSIRITI POSLE DA U ZAVISNOSTI KO GA ZADAJE da bude zatrazen ili zakazan pacijent/sestra
+	public void dodajNoviPregled() {
+		Scanner unoss = new Scanner(System.in);
+
+		System.out.println("Izaberi Pacijenta");
+		for(Pacijent pacijent : pacijenti) {
+			if(pacijent.isState()==true) {
+				
+		System.out.println(pacijent + "\n"); 
+			}
+		}
+		System.out.println("unesi korisnicko ime izabranog pacijenta");
+
+		String strpac= unoss.nextLine();
+		Pacijent pacijent1 = nadjiPacijenta(strpac);
+		//
+		System.out.println("Izaberi lekara");
+		for(Lekar lekar : lekari) {
+			if(lekar.isState()==true) {
+				
+		System.out.println(lekar + "\n"); 
+			}
+		}
+		System.out.println("unesi korisnicko ime izabranog pacijenta");
+
+		String strlekar= unoss.nextLine();
+		Lekar lekar1 = nadjiLekara(strlekar);
+		
+		System.out.println("Unesi Datum");
+		//
+		System.out.println("unesi  datum pregleda u formatu dd/MM/yyyy HH:mm:ss");
+		String userInput=keyboard.nextLine();	
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date noviTermin = null;
+		//String datum="5/5/1998 14:22:33";
+	    try {  	    	
+	    	noviTermin = sdf.parse(userInput);	       
+	    } catch (Exception e) {}
+		System.out.println("Soba:");
+
+		String soba= unoss.nextLine();
+		System.out.println("Kratak opis:");
+		String kratakOpis=unoss.nextLine();
+		StatusPregleda status= StatusPregleda.zakazan;
+		Pregled pregled = new Pregled(pacijent1, lekar1, noviTermin, soba, status, kratakOpis, true);
+		pregledi.add(pregled);
+		unoss.close();
+	}
+	
+	
 
 }
