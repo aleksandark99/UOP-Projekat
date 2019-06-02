@@ -99,14 +99,16 @@ public class Pregled {
 
 	@Override
 	public String toString() {
-		  SimpleDateFormat termin=new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");//DODATI VREME 
+		  SimpleDateFormat termin=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//DODATI VREME 
 		  String strDate = termin.format(this.termin);  
+//		  System.out.println(this.pacijent.getIme());
 		return //"termin:"+this.termin+
 				"termin:"+strDate+
 				"\nsoba:"+this.soba+
 				"\nstatus:"+this.statusPregleda+
-				"\nopis:"+this.kratak_opis+
-				"\nPacijent:"+this.pacijent.getIme()+
+				"\nopis:"+this.kratak_opis
+				+
+				"\nPacijent:"+this.getPacijent().getIme()+
 				"\nLekar_Pregleda:"+this.lekar.getIme();
 				
 				

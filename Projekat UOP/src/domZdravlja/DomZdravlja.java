@@ -21,6 +21,10 @@ import zdravstvena_knjizica.zdravstvena_knjizica;
 //import java.sql.Date;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.net.ssl.SSLEngineResult.Status;
+
+import java.text.DateFormat;
 //import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 //import java.util.Locale;
@@ -383,7 +387,7 @@ public class DomZdravlja {
 			File file = new File("src/files/" + imeFajla);
 			String content = "";
 			for (zdravstvena_knjizica knjizica : zdravstvenaKnjizice) {
-				SimpleDateFormat df = new SimpleDateFormat("DD/mm/yyyy");
+				SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
 				String dateString = df.format( knjizica.getDatumIsteka() );
 				
 			//	Date date = df.parse(toString(knjizica.getDatumIsteka()));
@@ -398,8 +402,6 @@ public class DomZdravlja {
 			System.out.println("Greska prilikom snimanja Knjizice.");
 		}
 	}
-
-
 	public void snimiPacijente(String imeFajla) {
 		try {
 			File file = new File("src/files/" + imeFajla);
@@ -419,8 +421,7 @@ public class DomZdravlja {
 		} catch (IOException e) {
 			System.out.println("Greska prilikom snimanja Pacijenta.");
 		}
-	}
-	
+	}	
 	public void snimiPreglede(String imeFajla) {
 		try {
 			File file = new File("src/files/" + imeFajla);
@@ -428,7 +429,12 @@ public class DomZdravlja {
 			for (Pregled pregled : pregledi) {
 				SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
 				String dateString = df.format( pregled.getTermin() );
-				  content +=pregled.getPacijent().getKorisnickoIme()+"|"+pregled.getLekar().getKorisnickoIme()+
+				
+				
+				  content +=pregled.getPacijent().getKorisnickoIme()+"|"+
+				
+						  
+				pregled.getLekar().getKorisnickoIme()+
 						  "|"+dateString+"|"+pregled.getSoba()+"|"+pregled.getStatus()+"|"+
 						  pregled.getKratak_opis()+"|"+pregled.isState()+"\n";
 				
@@ -448,7 +454,7 @@ public class DomZdravlja {
 	//FUNKCIJE ZA IZMENU(UPDATE)//
 	Scanner keyboard = new Scanner(System.in);
 	
-	////// IME //////////////
+	//IME
 	public void updateImePacijenta(Pacijent pacijent) {
 		System.out.println("unesi novo ime pacijenta");
 		String userInput=keyboard.nextLine();		
@@ -470,13 +476,13 @@ public class DomZdravlja {
 		System.out.println("Novo ime sestre:"+sestra.getIme());
 
 	}
-	////// PREZIME ////
-
+	
+	//PREZIME
 	public void updatePrezimePacijenta(Pacijent pacijent) {
 		System.out.println("unesi novo prezime pacijenta");
 		String userInput=keyboard.nextLine();		
 		pacijent.setPrezime(userInput);
-		System.out.println("Novo ime pacijenta:"+pacijent.getPrezime());
+		System.out.println("Novo preime pacijenta:"+pacijent.getPrezime());
 
 	}
 	public void updatePrezimeLekara(Lekar lekar) {
@@ -494,16 +500,329 @@ public class DomZdravlja {
 
 	}
 
-//////
+	//JMBG
+	public void updateJMBGPacijenta(Pacijent pacijent) {
+		System.out.println("unesi novi JMBG pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setJmbg(userInput);
+		System.out.println("Novi jmbg pacijenta:"+pacijent.getJmbg());
 
+	}
+	public void updateJMBGLekara(Lekar lekar) {
+		System.out.println("unesi novi JMBG lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setIme(userInput);
+		System.out.println("Novi JMBG lekara:"+lekar.getJmbg());
 
+	}
+	public void updateJMBGSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novi JMBG sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setJmbg(userInput);
+		System.out.println("Novi JMBG sestre:"+sestra.getJmbg());
 
+	}	
 
+	//POL
+	public void updatePolacijenta(Pacijent pacijent) {
+		System.out.println("unesi novi pol pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setPol(userInput);
+		System.out.println("Novi pol pacijenta:"+pacijent.getPol());
 
+	}
+	public void updatePolLekara(Lekar lekar) {
+		System.out.println("unesi novi pol lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setPol(userInput);
+		System.out.println("Novi pol lekara:"+lekar.getPol());
 
+	}
+	public void updatePolSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novi pol sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setPol(userInput);
+		System.out.println("Novi pol sestre:"+sestra.getPol());	
+	}	
 
+	//ADRESA
+	public void updateAdresuPacijenta(Pacijent pacijent) {
+		System.out.println("unesi novu adresu pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setAdresa(userInput);
+		System.out.println("Nova  adresa pacijenta:"+pacijent.getAdresa());
 
+	}
+	public void updateAdresuLekara(Lekar lekar) {
+		System.out.println("unesi novu adresu lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setAdresa(userInput);
+		System.out.println("Nova adresa lekara:"+lekar.getAdresa());
 
+	}
+	public void updateAdresuSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novu adresu sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setAdresa(userInput);
+		System.out.println("Nova adresa sestre:"+sestra.getAdresa());	
+	}
+	
+	//BROJ TELEFONA
+	public void updateBrojPacijenta(Pacijent pacijent) {
+		System.out.println("unesi novi Broj pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setBrojTelefona(userInput);
+		System.out.println("Novi Broj pacijenta:"+pacijent.getBrojTelefona());
+
+	}
+	public void updateBrojLekara(Lekar lekar) {
+		System.out.println("unesi novi Broj lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setBrojTelefona(userInput);
+		System.out.println("Novi Broj lekara:"+lekar.getBrojTelefona());
+
+	}
+	public void updateBrojSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novi Broj sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setBrojTelefona(userInput);
+		System.out.println("Novi Broj sestre:"+sestra.getBrojTelefona());	
+	}
+	////KORISNICKO IME NECEMO MENJATI
+	
+	//LOZINKA
+	public void updateLozinkuPacijenta(Pacijent pacijent) {
+		System.out.println("unesi novu lozinku pacijenta");
+		String userInput=keyboard.nextLine();		
+		pacijent.setLozinka(userInput);
+		System.out.println("Nova  lozinka pacijenta:"+pacijent.getLozinka());
+
+	}
+	public void updateLozinkuLekara(Lekar lekar) {
+		System.out.println("unesi novu lozinku lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setLozinka(userInput);
+		System.out.println("Nova lozinka lekara:"+lekar.getLozinka());
+
+	}
+	public void updateLozinkuSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novu lozinku sestre");
+		String userInput=keyboard.nextLine();		
+		sestra.setLozinka(userInput);
+		System.out.println("Nova lozinka sestre:"+sestra.getLozinka());	
+	}
+	
+	//PLATA
+	public void updatePlataLekara(Lekar lekar) {
+		System.out.println("unesi novu platu lekara");
+//		int userInput=keyboard.nextInt();
+		double userInput=keyboard.nextDouble();
+
+		lekar.setPlata(userInput);
+		System.out.println("Nova platu lekara:"+lekar.getPlata());
+
+	}
+	public void updatePlatuSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novu platu sestre");
+//		int userInput=keyboard.nextInt();		
+		double userInput=keyboard.nextDouble();
+		sestra.setPlata(userInput);
+		System.out.println("Nova platu sestre:"+sestra.getPlata());	
+	}
+	
+	//SLUZBA
+	public void updateSluzbuSestre(Medicinska_Sestra sestra) {
+		System.out.println("unesi novu sluzbu sestre");
+		System.out.println("1:sluzbaOpsteMedicine \n2.sluzbaZaPravneIekonomskePoslove \n3.sluzbaZaTehnickePoslove \n4.SluzbaZdravstveneZastiteDece \n5.sluzbaZdravstvneneZastiteRadnika \n6.stomatoloskaSluzba");
+		String userInput=keyboard.nextLine();
+		switch (userInput) {
+		case "1":
+			sestra.setSluzbaZaposlenog(Sluzba.sluzbaOpsteMedicine);
+			break;
+		case "2":
+			sestra.setSluzbaZaposlenog(Sluzba.sluzbaZaPravneIekonomskePoslove);
+			break;
+		case "3":
+			sestra.setSluzbaZaposlenog(Sluzba.sluzbaZaTehnickePoslove);
+			break;
+		case "4":
+			sestra.setSluzbaZaposlenog(Sluzba.SluzbaZdravstveneZastiteDece);
+			break;
+		case "5":
+			sestra.setSluzbaZaposlenog(Sluzba.sluzbaZdravstvneneZastiteRadnika);
+			break;
+		case "6":
+			sestra.setSluzbaZaposlenog(Sluzba.stomatoloskaSluzba);		
+			break;
+		
+		default:
+			System.out.println("Ne postojeca opcija");
+	}
+		System.out.println("Nova sluzba sestre:"+sestra.getSluzbaZaposlenog());	
+	}	
+	public void updateSluzbuLekara(Lekar lekar) {
+		System.out.println("unesi novu sluzbu lekara");
+		System.out.println("1:sluzbaOpsteMedicine \n2.stomatoloskaSluzba \n3.sluzbaZdravstvneneZastiteRadnika \n4.SluzbaZdravstveneZastiteDece");
+		String userInput=keyboard.nextLine();
+		switch (userInput) {
+		case "1":
+			lekar.setSluzbaZaposlenog(Sluzba.sluzbaOpsteMedicine);
+			break;
+
+		case "2":
+			lekar.setSluzbaZaposlenog(Sluzba.stomatoloskaSluzba);	
+			break;
+
+		case "3":
+			lekar.setSluzbaZaposlenog(Sluzba.sluzbaZdravstvneneZastiteRadnika);
+			break;
+
+		case "4":
+			lekar.setSluzbaZaposlenog(Sluzba.SluzbaZdravstveneZastiteDece);
+			break;
+		
+		
+		default:
+			System.out.println("Ne postojeca opcija");
+	}
+		System.out.println("Nova sluzba lekara:"+lekar.getSluzbaZaposlenog());	
+	}
+	
+	//SPECIJALIZACIJA
+	public void updateSpecijalizacijuLekara(Lekar lekar) {
+		System.out.println("unesi novu specijalizaciju lekara");
+		String userInput=keyboard.nextLine();		
+		lekar.setSpecijalizacija(userInput);
+		System.out.println("Nova specijalizaciju lekara:"+lekar.getSpecijalizacija());
+
+	}
+	
+	//IZABRANI LEKAR PACIJENTA
+	public void updateIzabranogLekara(Pacijent pacijent,Lekar lekar) {
+		System.out.println("Postavljanje novog izabranog lekara...");
+		
+		pacijent.setIzabraniLekar(lekar);
+		
+		System.out.println("Novi izabrani lekar je :"+ pacijent.getIzabraniLekar().getIme());
+	}
+
+	//DATUM PREGLEDA
+	public void updateDatumPregleda(Pregled pregled) {
+		System.out.println("unesi novi datum pregleda u formatu dd/MM/yyyy HH:mm:ss");
+		String userInput=keyboard.nextLine();	
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date noviTermin = null;
+		//String datum="5/5/1998 14:22:33";
+	    try {  	    	
+	    	noviTermin = sdf.parse(userInput);	       
+	    } catch (Exception e) {}
+		pregled.setTermin(noviTermin);
+		System.out.println("Novi termin pregleda:"+pregled.getTermin());	
+			}
+	
+	//SOBA PREGLEDA
+	public void updateSobuPregleda(Pregled pregled) {
+		System.out.println("unesi novu sobu pregleda");
+		String userInput=keyboard.nextLine();	
+		pregled.setSoba(userInput);
+		System.out.println("Nova soba pregleda "+pregled.getSoba());	
+	}
+	
+	//OPIS PREGLEDA
+	public void updateOpisPregleda(Pregled pregled) {
+		System.out.println("unesi novi opis pregleda");
+		String userInput=keyboard.nextLine();	
+		pregled.setKratak_opis(userInput);
+		System.out.println("Novi opis pregleda "+pregled.getKratak_opis());	
+	}
+	
+	//STATUS PREGLEDA
+	public void updateStatusPregleda(Pregled pregled) {//OVA FUNKCIJA NECE OVAKO RADITI OVO JE SAMO ZA TESTIRANJE LOGIKE IZA FUNKCIJE || 
+		System.out.println("unesi novi status pregleda");
+		System.out.println("1:otkazan \n2.zakazan \n3.zatrazen \n4.zavrsen");
+
+		String userInput=keyboard.nextLine();	
+
+		switch (userInput) {
+		case "1":
+			pregled.setStatus(StatusPregleda.otkazan);
+			break;
+		case "2":
+			pregled.setStatus(StatusPregleda.zakazan);
+			break;
+		case "3":		
+			pregled.setStatus(StatusPregleda.zatrazen);
+			break;
+		case "4":
+			pregled.setStatus(StatusPregleda.zavrsen);
+			break;
+
+		}
+		System.out.println("Novi status pregleda "+pregled.getStatus());	
+	}
+	
+	//DATUM ISTEKA KNJIZICE
+	public void updateDatumIstekaKnjizice(Pacijent pacijent) {
+		System.out.println("unesi novi datum isteka u formatu dd/MM/yyyy HH:mm:ss");
+		String userInput=keyboard.nextLine();	
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+		Date noviDatumIsteka = null;
+		//String datum="5/5/1998 14:22:33";
+	    try {  	    	
+	    	noviDatumIsteka = sdf.parse(userInput);	       
+	    } catch (Exception e) {}
+		pacijent.getKnjizica().setDatumIsteka(noviDatumIsteka);
+		System.out.println("Novi datum isteka knjizice :"+ pacijent.getKnjizica().getDatumIsteka());
+	}
+	
+	//KATEGORIJA OSIGURANJA
+	public void updateKategorijuOsiguranja(Pacijent pacijent) {
+		System.out.println("unesi novu kategoriju osiguranja");
+		System.out.println("1:Prva \n2.Druga \n3.Treca");
+		String userInput=keyboard.nextLine();	
+
+		switch (userInput) {
+		case "1":
+			pacijent.getKnjizica().setKategorijaOsiguranja(KategorijaOsiguranja.prva);
+			break;
+		case "2":
+			pacijent.getKnjizica().setKategorijaOsiguranja(KategorijaOsiguranja.druga);
+			break;
+		case "3":		
+			pacijent.getKnjizica().setKategorijaOsiguranja(KategorijaOsiguranja.treca);	
+			break;
+			}
+		System.out.println("Novi kategorija osiguranja:"+ pacijent.getKnjizica().getKategorijaOsiguranja());
+	}
+	
+	
+	
+	
+	
+	
+//IDEJA ZA TESTIRANJE PREVISE NAPORNA i NEDOVRSENA	
+//	public void izmeniPacijenta(Pacijent pacijent,ArrayList<Pacijent> pacijenti) {
+//		System.out.println("Izabrite Pacijenta za izmenu-(unesite njegovo korisnicko ime ");
+//		//ispisi pacijente
+//		for(Pacijent pacijentA : pacijenti) {
+//			if(pacijentA.isState()==true) {
+//				
+//		System.out.println(pacijent + "\n"); 
+//			}
+//		}
+//		
+//		String userInput=keyboard.nextLine();
+//		Pacijent pacijentZaIzmenu=nadjiPacijenta(userInput);
+//		System.out.println("izaberite sta zelite da izmenite");
+//		switch (izbor)
+//	}
+//
+//
+//
+//
+
+	
 
 
 

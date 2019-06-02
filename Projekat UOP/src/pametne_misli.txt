@@ -1,0 +1,16 @@
+Napravi funkciju za Lekara , Sestru, Pacijenta,Knjizicu , Pregled  koja prima objekar i u kojoj se bira sta ce da se izmeni *znaci 5 funkcija*
+
+
+
+NE MENJATI :
+KORISNICIMA: korisnicko ime, ulogu,JMBG
+
+PACIJENT: Knjizicu (Promena stvari u knjizici je moguca)
+
+PREGLED: ZA SADA NE MENJATI LEKARA NI PACIJENTA,--- Posle mozda dodati da moze da se menja u slucaju "pogresno izabranog lekara ili pacijenta"
+												=== SAMO U SLUCAJU DA status pregleda nije zavrsen
+												
+KNJIZICA: NE MENJAJ BROJ 
+
+
+

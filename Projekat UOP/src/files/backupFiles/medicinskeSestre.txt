@@ -1,0 +1,4 @@
+Jovana|Jovic|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|MedicinskaSestra|sluzbaOpsteMedicine|200.0|true
+Jelena|jelic|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|MedicinskaSestra|sluzbaOpsteMedicine|2200.0|false
+testimeSestre|testprezime|12321|zensko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|MedicinskaSestra|sluzbaOpsteMedicine|300.0|true
+testimeSestre|testprezime|12321|zensko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|MedicinskaSestra|sluzbaOpsteMedicine|300.0|true
