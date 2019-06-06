@@ -16,3 +16,5 @@ testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIm
 LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|false
 testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
 LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|false
+testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
+LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|false

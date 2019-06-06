@@ -797,7 +797,7 @@ public class DomZdravlja {
 		System.out.println("Novi kategorija osiguranja:"+ pacijent.getKnjizica().getKategorijaOsiguranja());
 	}
 	
-	//DODAVANJE//
+	//DODAVANJE//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	public void dodajNovogPacijenta() {
 		
@@ -833,28 +833,28 @@ public class DomZdravlja {
 		Lekar izabraniLekar=nadjiLekara(strLekar);
 		zdravstvena_knjizica knjizica = new zdravstvena_knjizica();
 		//
-		Scanner dd = new Scanner(System.in);
-
-		System.out.println("Unesi Datum isteka knjizice dd/mm/yyyy");
-		//
-	//	dd.hasNextLine();
-		String userInput=dd.nextLine();
-		
-		
-		
-		
-		
-		DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-		Date datumIsteka = null;
-	    try {  	    	
-	    	datumIsteka = sdf.parse(userInput);	       
-	    } catch (Exception e) {}
-	    //
+//		Scanner dd = new Scanner(System.in);
+//
+//		System.out.println("Unesi Datum isteka knjizice dd/mm/yyyy");
+//		//
+//		String userInput=dd.nextLine();		
+//		/////POGLEDAJ OVDE		
+//		DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+//		Date datumIsteka = null;
+//	    try {  	    	
+//	    	datumIsteka = sdf.parse(userInput);	       
+//	    } catch (Exception e) {}
+//	    //
 		System.out.println("Unesi broj kjnizice");
 		int broj = unoss.nextInt();
+		unoss.nextLine();///////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 		knjizica.setBroj(broj);
 		System.out.println("Izaneri kategoriju osiguranja \n1.Prva \n2.Druga \n3.Treca");
 		int izbor = unoss.nextInt();
+		unoss.nextLine();//////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+		
 		KategorijaOsiguranja kat=null;
 		if (izbor==1) {
 			kat=KategorijaOsiguranja.prva;
@@ -865,8 +865,24 @@ public class DomZdravlja {
 
 		}
 		knjizica.setKategorijaOsiguranja(kat);
-		unoss.close();
+	//	unoss.close();
+		///REKREACIJA BUGA
+		//Scanner dd = new Scanner(System.in);
 
+		System.out.println("Unesi Datum isteka knjizice dd/mm/yyyy");
+		//
+		//dd.hasNextLine();
+		String userInput=unoss.nextLine();		
+		/////POGLEDAJ OVDE		
+		DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		Date datumIsteka = null;
+	    try {  	    	
+	    	datumIsteka = sdf.parse(userInput);	       
+	    } catch (Exception e) {}
+	    //
+		//dd.close();
+		
+		//
 	    knjizica.setDatumIsteka(datumIsteka);
 		//
 		//Pacijent pacijent = new Pacijent(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, uloga, izabraniLekar, knjizica, true);
@@ -1090,6 +1106,6 @@ public class DomZdravlja {
 		unoss.close();
 	}
 	
-	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 }

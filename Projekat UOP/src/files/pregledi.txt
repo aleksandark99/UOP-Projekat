@@ -7,3 +7,4 @@ TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
 TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
 TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
 TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
+TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
