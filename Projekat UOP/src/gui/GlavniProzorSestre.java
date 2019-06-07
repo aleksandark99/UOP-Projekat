@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import domZdravlja.DomZdravlja;
 import guiDodavanje.PacijentDodavanjeGUI;
+import guizaPrikaz.PacijentPrikazGUI;
 import osobe.Medicinska_Sestra;
 import osobe.Pacijent;
 
@@ -44,8 +46,15 @@ public class GlavniProzorSestre extends JFrame {
 	private JButton btnEditPac = new JButton();
 	private JButton btnDeletePac = new JButton();
 	
+	
+	
+
+	
 	private DefaultTableModel tableModel;
 	private JTable pacijentTabela;
+	
+
+
 	
 	private JToolBar mainToolbar = new JToolBar();
 
@@ -61,7 +70,7 @@ public class GlavniProzorSestre extends JFrame {
 		setResizable(true);
 		initMenu();
 		initActions();
-		initbtnActions();
+	//	initbtnActions();
 		
 		
 	
@@ -98,68 +107,90 @@ public class GlavniProzorSestre extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PacijentGUI();
-				
+				PacijentPrikazGUI pp= new PacijentPrikazGUI(domzdravlja);
+				pp.setVisible(true);
 			}
 		});
 		
 		
+		
+		
 	}
 	
-	private void PacijentGUI() {
-		ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
-		btnAddPac.setIcon(addIcon);
-		mainToolbar.add(btnAddPac);
-		ImageIcon editIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
-		btnEditPac.setIcon(editIcon);
-		mainToolbar.add(btnEditPac);
-		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
-		btnDeletePac.setIcon(deleteIcon);
-		mainToolbar.add(btnDeletePac);
-		add(mainToolbar, BorderLayout.NORTH);
-		
-		String[] zaglavlje = new String[] {"Ime", "Prezime","JMBG","Pol","Adresa","Broj Telefona","Korisnicko ime","Lozinka","Izabrani lekar"};
-		Object[][] podaci = new Object[this.domzdravlja.getPacijente().size()][zaglavlje.length];
-		
-		for(int i=0; i<this.domzdravlja.getPacijente().size(); i++) {
-
-			Pacijent pacijent = domzdravlja.getPacijente().get(i);
-
-
-			podaci[i][0] = pacijent.getIme()  ;
-			podaci[i][1] = pacijent.getPrezime()  ;
-			podaci[i][2] = pacijent.getJmbg()  ;
-			podaci[i][3] = pacijent.getPol()  ;
-			podaci[i][4] = pacijent.getAdresa()  ;
-			podaci[i][5] = pacijent.getBrojTelefona()  ;
-			podaci[i][6] = pacijent.getKorisnickoIme()  ;
-			podaci[i][7] = pacijent.getLozinka()  ;
-			podaci[i][8] = pacijent.getIzabraniLekar().getKorisnickoIme()  ;
-		}
-		tableModel = new DefaultTableModel(podaci, zaglavlje);
-		pacijentTabela = new JTable(tableModel);
-		pacijentTabela.setRowSelectionAllowed(true);
-		pacijentTabela.setColumnSelectionAllowed(false);
-		pacijentTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		pacijentTabela.setDefaultEditor(Object.class, null);
-		
-		JScrollPane scrollPane = new JScrollPane(pacijentTabela);
-		add(scrollPane, BorderLayout.CENTER);
-		
-		revalidate();
-	}
+//	private void PacijentGUI() {
+//
+//		
+//		ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
+//		btnAddPac.setIcon(addIcon);
+//		mainToolbar.add(btnAddPac);
+//		ImageIcon editIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
+//		btnEditPac.setIcon(editIcon);
+//		mainToolbar.add(btnEditPac);
+//		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
+//		btnDeletePac.setIcon(deleteIcon);
+//		mainToolbar.add(btnDeletePac);
+//		add(mainToolbar, BorderLayout.NORTH);
+//		
+//		String[] zaglavlje = new String[] {"Ime", "Prezime","JMBG","Pol","Adresa","Broj Telefona","Korisnicko ime","Lozinka","Izabrani lekar","Broj knjizice","Datum isteka knjizice","Kategorija osiguranja"};
+//		Object[][] podaci = new Object[this.domzdravlja.getPacijente().size()][zaglavlje.length];
+//		
+//		for(int i=0; i<this.domzdravlja.getPacijente().size(); i++) {
+//
+//			Pacijent pacijent = domzdravlja.getPacijente().get(i);
+//
+//
+//			podaci[i][0] = pacijent.getIme()  ;
+//			podaci[i][1] = pacijent.getPrezime()  ;
+//			podaci[i][2] = pacijent.getJmbg()  ;
+//			podaci[i][3] = pacijent.getPol()  ;
+//			podaci[i][4] = pacijent.getAdresa()  ;
+//			podaci[i][5] = pacijent.getBrojTelefona()  ;
+//			podaci[i][6] = pacijent.getKorisnickoIme()  ;
+//			podaci[i][7] = pacijent.getLozinka()  ;
+//			podaci[i][8] = pacijent.getIzabraniLekar().getKorisnickoIme()  ;
+//			podaci[i][9] = pacijent.getKnjizica().getBroj();
+//			podaci[i][10] = pacijent.getKnjizica().getDatumIsteka();
+//			podaci[i][11] = pacijent.getKnjizica().getKategorijaOsiguranja();
+//		}
+//		
+////		pacijentTabela = new JTable(tableModel);
+//		
+//		pacijentTabela = new JTable();
+//		tableModel= (DefaultTableModel) pacijentTabela.getModel();
+//		tableModel.setDataVector(podaci, zaglavlje);
+////		/tableModel.fireTableCellUpdated(row, column);
+//
+//		
+//		
+//	  //  tableModel = new DefaultTableModel(podaci, zaglavlje);
+//
+//		
+//		
+//		
+//		pacijentTabela.setRowSelectionAllowed(true);
+//		pacijentTabela.setColumnSelectionAllowed(false);
+//		pacijentTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		pacijentTabela.setDefaultEditor(Object.class, null);
+//		
+//		JScrollPane scrollPane = new JScrollPane(pacijentTabela);
+//		add(scrollPane, BorderLayout.CENTER);
+//		
+//		
+//		revalidate();
+//		repaint();
+//	}
 	
-	private void initbtnActions() {
-		btnAddPac.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			PacijentDodavanjeGUI pacADD= new PacijentDodavanjeGUI(domzdravlja,null);
-			pacADD.setVisible(true);
-				
-			}
-		});
-	}
+//	private void initbtnActions() {
+//		btnAddPac.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//			PacijentDodavanjeGUI pacADD= new PacijentDodavanjeGUI(domzdravlja,null);
+//			pacADD.setVisible(true);
+//				
+//			}
+//		});
+//	}
 	
 	
 	

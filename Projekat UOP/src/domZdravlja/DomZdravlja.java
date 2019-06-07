@@ -896,7 +896,7 @@ public class DomZdravlja {
 	
 	//PRAVLJENJE KNJIZICE
 	public zdravstvena_knjizica Novaknjizica() {
-		System.out.println("Broj knjizice:");
+//		System.out.println("Broj knjizice:");
 		int broj = keyboard.nextInt();	
     	
 		
