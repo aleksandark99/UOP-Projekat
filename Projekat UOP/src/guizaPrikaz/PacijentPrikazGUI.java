@@ -196,6 +196,10 @@ public class PacijentPrikazGUI extends JFrame {
 							
 							domzdravlja.snimiPacijente("pacijenti.txt");
 							domzdravlja.snimiKnjizice("knjizice.txt");
+							PacijentPrikazGUI.this.dispose();
+							PacijentPrikazGUI.this.setVisible(false);
+							PacijentPrikazGUI ss= new PacijentPrikazGUI(domzdravlja);
+							ss.setVisible(true);
 						}
 					}else {
 						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog pacijenta!", "Greska", JOptionPane.ERROR_MESSAGE);

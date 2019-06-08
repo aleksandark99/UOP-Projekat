@@ -174,35 +174,40 @@ public class SestrePrikazGUI extends JFrame {
 				
 			}
 		});
-//		btnDeletePac.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				int red = pacijentTabela.getSelectedRow();
-//				if(red == -1) {
-//					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-//				}else {
-//					String id = pacijentTabela.getValueAt(red, 6).toString();
+		btnDeletePac.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = pacijentTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String id = pacijentTabela.getValueAt(red, 6).toString();
 //					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
-//					if(pacijent != null) {
-//						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?", pacijent.getKorisnickoIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
-//						if(izbor == JOptionPane.YES_OPTION) {
-//							tableModel= (DefaultTableModel) pacijentTabela.getModel();
-//							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
-//							if(pacijent instanceof Pacijent) {
-//								domzdravlja.obrisiPacijenta(pacijent);
-//							}
-//							
-//							domzdravlja.snimiPacijente("pacijenti.txt");
-//							domzdravlja.snimiKnjizice("knjizice.txt");
-//						}
-//					}else {
-//						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog pacijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
-//					}
-//				}
-//				
-//			}
-//		});
+					Medicinska_Sestra sestra = domzdravlja.nadjiSestru(id);
+					if(sestra != null) {
+						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?", sestra.getKorisnickoIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+						if(izbor == JOptionPane.YES_OPTION) {
+							tableModel= (DefaultTableModel) pacijentTabela.getModel();
+							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
+							if(sestra instanceof Medicinska_Sestra) {
+								domzdravlja.obrisiSestru(sestra);
+							}
+							
+							domzdravlja.snimiSestre("medicinskeSestre.txt");
+							SestrePrikazGUI.this.dispose();
+							SestrePrikazGUI.this.setVisible(false);
+							SestrePrikazGUI ss= new SestrePrikazGUI(domzdravlja);
+							ss.setVisible(true);
+							
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog pacijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+			}
+		});
 	}
 
 }
