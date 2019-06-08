@@ -16,13 +16,13 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-
-import osobe.Pacijent;
 import domZdravlja.DomZdravlja;
 import guiDodavanje.PacijentDodavanjeGUI;
+import guiDodavanje.SestraDodavanjeGUI;
+import osobe.Medicinska_Sestra;
+import osobe.Pacijent;
 
-
-public class PacijentPrikazGUI extends JFrame {
+public class SestrePrikazGUI extends JFrame {
 	private JButton btnAddPac = new JButton();
 	private JButton btnEditPac = new JButton();
 	private JButton btnDeletePac = new JButton();
@@ -36,14 +36,14 @@ public class PacijentPrikazGUI extends JFrame {
 	
 	private DomZdravlja domzdravlja;
 	
-	public  PacijentPrikazGUI(DomZdravlja domzdravlja){
+	public  SestrePrikazGUI(DomZdravlja domzdravlja){
 		this.domzdravlja=domzdravlja;
 		setTitle("Prikaz Pacijenata" );
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(true);
-		PacijentGUI();
+		SestraGUI();
 		initbtnActions();
 		
 	}
@@ -53,7 +53,7 @@ public class PacijentPrikazGUI extends JFrame {
 	
 	
 	
-	private void PacijentGUI() {
+	private void SestraGUI() {
 
 		
 		ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
@@ -67,39 +67,38 @@ public class PacijentPrikazGUI extends JFrame {
 		mainToolbar.add(btnDeletePac);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlje = new String[] {"Ime", "Prezime","JMBG","Pol","Adresa","Broj Telefona","Korisnicko ime","Lozinka","Izabrani lekar","Broj knjizice","Datum isteka knjizice","Kategorija osiguranja"};
+		String[] zaglavlje = new String[] {"Ime", "Prezime","JMBG","Pol","Adresa","Broj Telefona","Korisnicko ime","Lozinka","Sluzba","Plata"};
 		
 		
 		
-	    ArrayList<Pacijent> pacijentiActive = new ArrayList<Pacijent>();
-	    for (Pacijent pacijent: domzdravlja.getPacijente()) {
-	    	if (pacijent.isState()==true) {
-	    		pacijentiActive.add(pacijent);
+	    ArrayList<Medicinska_Sestra> sestraActive = new ArrayList<Medicinska_Sestra>();
+	    for (Medicinska_Sestra sestra: domzdravlja.getSestre()) {
+	    	if (sestra.isState()==true) {
+	    		sestraActive.add(sestra);
 	    	}
 	    	else {
-	    		System.out.println(pacijent+"\n");
+	    		System.out.println(sestra+"\n");
 	    	}
 	    }
-	    Object[][] podaci = new Object[pacijentiActive.size()][zaglavlje.length];
-	    System.out.println(pacijentiActive.size());
+	    Object[][] podaci = new Object[sestraActive.size()][zaglavlje.length];
+	    System.out.println(sestraActive.size());
 //		for(int i=0; i<this.domzdravlja.getPacijente().size(); i++) {
-		for(int i=0; i<pacijentiActive.size(); i++) {
+		for(int i=0; i<sestraActive.size(); i++) {
 //			Pacijent pacijent = domzdravlja.getPacijente().get(i);
-			Pacijent pacijent = pacijentiActive.get(i);
+			Medicinska_Sestra sestra = sestraActive.get(i);
 //			if (pacijent.isState()==true) {
 			SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
-			podaci[i][0] = pacijent.getIme()  ;
-			podaci[i][1] = pacijent.getPrezime()  ;
-			podaci[i][2] = pacijent.getJmbg()  ;
-			podaci[i][3] = pacijent.getPol()  ;
-			podaci[i][4] = pacijent.getAdresa()  ;
-			podaci[i][5] = pacijent.getBrojTelefona()  ;
-			podaci[i][6] = pacijent.getKorisnickoIme()  ;
-			podaci[i][7] = pacijent.getLozinka()  ;
-			podaci[i][8] = pacijent.getIzabraniLekar().getKorisnickoIme()  ;
-			podaci[i][9] = pacijent.getKnjizica().getBroj();
-			podaci[i][10] =sdf.format( pacijent.getKnjizica().getDatumIsteka());
-			podaci[i][11] = pacijent.getKnjizica().getKategorijaOsiguranja();
+			podaci[i][0] = sestra.getIme()  ;
+			podaci[i][1] = sestra.getPrezime()  ;
+			podaci[i][2] = sestra.getJmbg()  ;
+			podaci[i][3] = sestra.getPol()  ;
+			podaci[i][4] = sestra.getAdresa()  ;
+			podaci[i][5] = sestra.getBrojTelefona()  ;
+			podaci[i][6] = sestra.getKorisnickoIme()  ;
+			podaci[i][7] = sestra.getLozinka()  ;
+			podaci[i][8] = sestra.getSluzbaZaposlenog()  ;
+			podaci[i][9] = sestra.getPlata();
+	
 		}
 		
 //		pacijentTabela = new JTable(tableModel);
@@ -142,10 +141,10 @@ public class PacijentPrikazGUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			PacijentDodavanjeGUI pacADD= new PacijentDodavanjeGUI(domzdravlja,null);
-			pacADD.setVisible(true);
-			PacijentPrikazGUI.this.dispose();
-			PacijentPrikazGUI.this.setVisible(false);
+			SestraDodavanjeGUI ss= new SestraDodavanjeGUI(domzdravlja,null);
+			ss.setVisible(true);/////////////////////////////////////////////////////////////////////METODE ZA DODAVANJE SESTRE
+			SestrePrikazGUI.this.dispose();
+			SestrePrikazGUI.this.setVisible(false);
 				
 			}
 		});
@@ -159,13 +158,13 @@ public class PacijentPrikazGUI extends JFrame {
 				}else {
 					String id = pacijentTabela.getValueAt(red, 6).toString();
 					System.out.println(id);
-					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
-					if(pacijent != null) {
-						PacijentDodavanjeGUI pacADD= new PacijentDodavanjeGUI(domzdravlja,pacijent);
-						pacADD.setVisible(true);
+					Medicinska_Sestra sestra = domzdravlja.nadjiSestru(id);
+					if(sestra != null) {
+						SestraDodavanjeGUI ss= new SestraDodavanjeGUI(domzdravlja,sestra);
+						ss.setVisible(true);
 						//
-						PacijentPrikazGUI.this.dispose();
-						PacijentPrikazGUI.this.setVisible(false);
+						SestrePrikazGUI.this.dispose();
+						SestrePrikazGUI.this.setVisible(false);
 						
 						//
 					}else {
@@ -175,39 +174,35 @@ public class PacijentPrikazGUI extends JFrame {
 				
 			}
 		});
-		btnDeletePac.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int red = pacijentTabela.getSelectedRow();
-				if(red == -1) {
-					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-				}else {
-					String id = pacijentTabela.getValueAt(red, 6).toString();
-					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
-					if(pacijent != null) {
-						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?", pacijent.getKorisnickoIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
-						if(izbor == JOptionPane.YES_OPTION) {
-							tableModel= (DefaultTableModel) pacijentTabela.getModel();
-							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
-							if(pacijent instanceof Pacijent) {
-								domzdravlja.obrisiPacijenta(pacijent);
-							}
-							
-							domzdravlja.snimiPacijente("pacijenti.txt");
-							domzdravlja.snimiKnjizice("knjizice.txt");
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog pacijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-				
-			}
-		});
+//		btnDeletePac.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				int red = pacijentTabela.getSelectedRow();
+//				if(red == -1) {
+//					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+//				}else {
+//					String id = pacijentTabela.getValueAt(red, 6).toString();
+//					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
+//					if(pacijent != null) {
+//						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?", pacijent.getKorisnickoIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+//						if(izbor == JOptionPane.YES_OPTION) {
+//							tableModel= (DefaultTableModel) pacijentTabela.getModel();
+//							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
+//							if(pacijent instanceof Pacijent) {
+//								domzdravlja.obrisiPacijenta(pacijent);
+//							}
+//							
+//							domzdravlja.snimiPacijente("pacijenti.txt");
+//							domzdravlja.snimiKnjizice("knjizice.txt");
+//						}
+//					}else {
+//						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog pacijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+//					}
+//				}
+//				
+//			}
+//		});
 	}
-	
-	
-	
-	
-	
+
 }

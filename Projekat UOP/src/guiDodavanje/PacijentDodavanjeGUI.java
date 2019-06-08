@@ -23,6 +23,7 @@ import guizaPrikaz.PacijentPrikazGUI;
 import net.miginfocom.swing.MigLayout;
 import osobe.Lekar;
 import osobe.Pacijent;
+import osobe.Sluzba;
 import osobe.Uloga;
 import zdravstvena_knjizica.KategorijaOsiguranja;
 import zdravstvena_knjizica.zdravstvena_knjizica;
@@ -206,6 +207,9 @@ public class PacijentDodavanjeGUI extends JFrame {
 		txtKorImeIzabranogLekara.setText(pacijent.getIzabraniLekar().getKorisnickoIme());
 		txtBrojKnjizice.setText(String.valueOf(pacijent.getKnjizica().getBroj()));
 		
+		int b =vratiIndex(pacijent.getKnjizica().getKategorijaOsiguranja());
+		cbKatOsiguranja.setSelectedIndex(b);
+		
 		txtKorisnickoIme.setEnabled(false);
 		txtBrojKnjizice.setEnabled(false);
 		
@@ -303,7 +307,16 @@ public class PacijentDodavanjeGUI extends JFrame {
 		return knjizica;
 	}
 	
-	
+	private int vratiIndex(KategorijaOsiguranja kat) {
+		if(kat ==KategorijaOsiguranja.prva) {
+			return 0;
+		}else if (kat ==KategorijaOsiguranja.druga) {
+			return 1;
+		}else if (kat ==KategorijaOsiguranja.treca) {
+			return 2;
+		}
+		return 0;
+	}
 	
 	
 	

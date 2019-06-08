@@ -1,4 +1,4 @@
 pera|peric|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|Pacijent|marko123|1|true
-danilo|danic|JMBG|pol|adresa|brojTelefona|dane123|Lozinka|Pacijent|jovac22|13|false
+danilo|danic|JMBG|pol|adresa|brojTelefona|dane123|Lozinka|Pacijent|jovac22|13|true
 testimePacijenta|testprezime|12321|zensko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Pacijent|TestkorisnickoIme|15|true
 testimePacijenta|testprezime|12321|zensko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Pacijent|TestkorisnickoIme|15|true

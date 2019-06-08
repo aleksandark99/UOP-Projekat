@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import domZdravlja.DomZdravlja;
 import guiDodavanje.PacijentDodavanjeGUI;
 import guizaPrikaz.PacijentPrikazGUI;
+import guizaPrikaz.SestrePrikazGUI;
 import osobe.Medicinska_Sestra;
 import osobe.Pacijent;
 
@@ -109,6 +110,15 @@ public class GlavniProzorSestre extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PacijentPrikazGUI pp= new PacijentPrikazGUI(domzdravlja);
 				pp.setVisible(true);
+			}
+		});
+		sestreItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SestrePrikazGUI ss= new SestrePrikazGUI(domzdravlja);
+				ss.setVisible(true);
+				
 			}
 		});
 		
