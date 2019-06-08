@@ -38,7 +38,7 @@ public class SestrePrikazGUI extends JFrame {
 	
 	public  SestrePrikazGUI(DomZdravlja domzdravlja){
 		this.domzdravlja=domzdravlja;
-		setTitle("Prikaz Pacijenata" );
+		setTitle("Prikaz Sestri" );
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
