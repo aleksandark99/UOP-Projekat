@@ -67,7 +67,7 @@ public class TestDoma {
 	    	TestDate2 = sdf.parse(datum);	       
 	    } catch (Exception e) {}
 		
-	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",true);
+	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",0,true,0);
 		domzdravlja.dodajPreglede(testPregled);
 		//System.out.println(testPregled);
 		

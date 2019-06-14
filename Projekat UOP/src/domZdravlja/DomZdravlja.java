@@ -230,7 +230,9 @@ public class DomZdravlja {
 					String korisnickoImeLekara=split[1];
 					Lekar lekar1 = nadjiLekara(korisnickoImeLekara);
 					String opisss=split[5];
-					boolean state = Boolean.parseBoolean(split[6]); 
+					int racun =Integer.parseInt(split[6]);
+					boolean state = Boolean.parseBoolean(split[7]); 
+					int broj =Integer.parseInt(split[8]);
 					StatusPregleda statusPregleda=StatusPregleda.valueOf(split[4]);
 					String soba=split[3];//ostavi string u slucaju da imamo 7A 3B sobe i slicno...
 					//
@@ -243,7 +245,7 @@ public class DomZdravlja {
 						
 					}
 					//
-					Pregled pregled = new Pregled(pacijent1, lekar1, termin, soba, statusPregleda, opisss,state);
+					Pregled pregled = new Pregled(pacijent1, lekar1, termin, soba, statusPregleda, opisss,racun,state,broj);
 					pregledi.add(pregled);
 					
 					
@@ -339,7 +341,15 @@ public class DomZdravlja {
 
 
 	}
-	//za sadanema potrebe za nadji pregled metodu
+
+	public Pregled nadjiPregled(int a) {
+		for (Pregled pregled :pregledi) {
+			if(pregled.getBroj()==a) {
+				return pregled;
+			}
+		}
+		return null;
+	}
 	
 	public void snimiLekare(String imeFajla) {
 		try {
@@ -437,7 +447,7 @@ public class DomZdravlja {
 						  
 				pregled.getLekar().getKorisnickoIme()+
 						  "|"+dateString+"|"+pregled.getSoba()+"|"+pregled.getStatus()+"|"+
-						  pregled.getKratak_opis()+"|"+pregled.isState()+"\n";
+						  pregled.getKratak_opis()+"|"+ pregled.getRacun()+"|"+pregled.isState()+"|"+pregled.getBroj()+"\n";
 				
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -1101,7 +1111,7 @@ public class DomZdravlja {
 		System.out.println("Kratak opis:");
 		String kratakOpis=unoss.nextLine();
 		StatusPregleda status= StatusPregleda.zakazan;
-		Pregled pregled = new Pregled(pacijent1, lekar1, noviTermin, soba, status, kratakOpis, true);
+		Pregled pregled = new Pregled(pacijent1, lekar1, noviTermin, soba, status, kratakOpis,0, true,0);
 		pregledi.add(pregled);
 		unoss.close();
 	}

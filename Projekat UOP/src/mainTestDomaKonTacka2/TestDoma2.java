@@ -69,8 +69,8 @@ public class TestDoma2 {
 	    	TestDate2 = sdf.parse(datum);	       
 	    } catch (Exception e) {}
 		
-	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",true);
-		domzdravlja.dodajPreglede(testPregled);
+//	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",0,true);
+//		domzdravlja.dodajPreglede(testPregled);
 		
 //		Lekar Testlekar1 =new Lekar("LekarzaBrisanjeTEST","testprezime", "12321", "musko", "perdobrica 13", "022 555-888","TestkorisnickoIme", "Testlozinka", Uloga.Lekar, 300.00, Sluzba.sluzbaOpsteMedicine,"Test specijalizacija",true);
 //		domzdravlja.dodajLekara(Testlekar1);
@@ -82,7 +82,7 @@ public class TestDoma2 {
 		domzdravlja.obrisiPacijenta(testPacijent);//KADA SE OBRISE PACIJENT OBRISE SE I NJEGOVA KNJIZICA
 		domzdravlja.obrisiSestru(Testsestra);
 		
-		domzdravlja.obrisiPreglede(testPregled);
+//		domzdravlja.obrisiPreglede(testPregled);
 
 
 		System.out.println("Ispis Doma zdravlja posle brisanja Lekara,Pacijenta,MedicinskeSestre,Pregleda");

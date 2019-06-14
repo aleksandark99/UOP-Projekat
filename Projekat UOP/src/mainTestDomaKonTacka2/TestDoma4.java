@@ -69,10 +69,10 @@ public class TestDoma4 {
 	    try {  	    	
 	    	TestDate2 = sdf.parse(datum);	       
 	    } catch (Exception e) {}
-		
-	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",true);
-		domzdravlja.dodajPreglede(testPregled);
-		
+//		
+//	    Pregled testPregled = new Pregled(testPacijent, Testlekar, TestDate2, "7D", StatusPregleda.zakazan, "testopis",0,true);
+//		domzdravlja.dodajPreglede(testPregled);
+//		
 //		Lekar Testlekar1 =new Lekar("LekarzaBrisanjeTEST","testprezime", "12321", "musko", "perdobrica 13", "022 555-888","TestkorisnickoIme", "Testlozinka", Uloga.Lekar, 300.00, Sluzba.sluzbaOpsteMedicine,"Test specijalizacija",true);
 //		domzdravlja.dodajLekara(Testlekar1);
 		
