@@ -1,3 +1,3 @@
-pera123|marko123|16/26/2000 13:26:00|soba|zakazan|opis|true
-TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
-TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|true
+pera123|marko123|16/8/2000 13:26:00|soba|zakazan|opis|0|true|1
+sasa|TestkorisnickoIme|05/8/1998 14:22:33|7D|zakazan|testopis|0|true|2
+sasa|TestkorisnickoIme|05/8/1998 14:22:33|7D|zakazan|testopis|0|true|3

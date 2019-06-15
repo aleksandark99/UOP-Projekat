@@ -239,7 +239,7 @@ public class DomZdravlja {
 					String termin1=split[2];
 					Date termin =null;
 					try {
-						SimpleDateFormat datumisteka=new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");//DODATI VREME 
+						SimpleDateFormat datumisteka=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//DODATI VREME 
 						termin =datumisteka.parse(termin1);
 					}catch(Exception e){
 						
@@ -438,7 +438,7 @@ public class DomZdravlja {
 			File file = new File("src/files/" + imeFajla);
 			String content = "";
 			for (Pregled pregled : pregledi) {
-				SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				String dateString = df.format( pregled.getTermin() );
 				
 				

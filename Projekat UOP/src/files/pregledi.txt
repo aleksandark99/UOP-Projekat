@@ -1,12 +1,5 @@
-pera123|marko123|16/26/2000 13:26:00|soba|zakazan|opis|0|true|1
-TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|true|2
-TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|true|3
-TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|true|4
-pera123|marko123|15/22/2019 14:22:00|3|zakazan|dsaasd|22|true|5
-pera123|S|15/05/2019 05:05:05|23|zakazan|aasdsd|22|false|6
-1|S|11/11/2019 11:11:11|11|otkazan|11|0|true|7
-1|TestkorisnickoIme|12/12/2020 12:12:12||zavrsen|243242|0|true|8
-1|TestkorisnickoIme|15/02/2019 22:02:23||otkazan|nemaasdasdsad|0|true|9
-1|1|15/02/2019 22:02:23||zavrsen|nemaasdasdsad|0|true|10
-1|1|15/02/2019 12:02:23||otkazan|nemaasdasdsad|0|true|11
-1|1|15/02/2019 12:02:23||zavrsen|nemaasdasdsad|0|true|12
+pera123|marko123|16/07/2000 13:26:00|soba|zakazan|opis|0|true|1
+sasa|TestkorisnickoIme|05/08/1998 14:22:33|7D|zakazan|testopis|0|true|3
+pera123|jovac22|11/01/2019 15:15:15|asdsda|zakazan|asdsda|0|true|4
+pera123|jovac22|11/01/2019 15:55:15|asdsda|zakazan|asdasd|0|true|5
+pera123|jovac22|01/11/2019 11:55:13|asdsda|zakazan|asdasd|0|true|6

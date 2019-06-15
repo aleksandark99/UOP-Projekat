@@ -73,7 +73,7 @@ public class SestraDodavanjeGUI extends JFrame {
 		if(sestra != null) {
 			setTitle(sestra.getIme() + " - Izmena podataka");
 		}else {
-			setTitle("Dodavanje pacijenata");
+			setTitle("Dodavanje sestre");
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);

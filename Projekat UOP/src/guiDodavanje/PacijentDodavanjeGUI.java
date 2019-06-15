@@ -296,10 +296,13 @@ public class PacijentDodavanjeGUI extends JFrame {
 		int broh = brNoveKnjizice();
 		Date datumIsteka = new Date();
 
-//		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		
+		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat sdg= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		sdg.format(datumIsteka);
+//		Date newDate = sdf.arse(datumIsteka);
 		String kat =(String) cbKatOsiguranja.getSelectedItem();
 		KategorijaOsiguranja kategorija = KategorijaOsiguranja.valueOf(kat);
+	
 		
 		zdravstvena_knjizica knjizica =new zdravstvena_knjizica(broh, datumIsteka, kategorija, true);
 		domzravlja.dodajKnjizice(knjizica);

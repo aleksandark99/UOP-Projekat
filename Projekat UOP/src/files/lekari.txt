@@ -1,9 +1,4 @@
 marko|maric|JMBG|pol|adresa|brojTelefona|marko123|Lozinka|Lekar|sluzbaOpsteMedicine|specijalizacija|200.0|false
-jovan|jovic|123313|pol|adresa|brojTelefona|jovac22|Lozinka|Lekar|sluzbaOpsteMedicine|specijalizacija|200.0|false
-D|D|D|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaZaPravneIekonomskePoslove|Test specijalizacija|302220.0|true
-LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
+jovan|jovic|123313|pol|adresa|brojTelefona|jovac22|Lozinka|Lekar|sluzbaOpsteMedicine|specijalizacija|200.0|true
 testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
-LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
-S|S|S|S|S|S|S|S|Lekar|stomatoloskaSluzba|sdasdds|123.0|true
-testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|1|1|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
-LekarzaBrisanjeTEST|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|false
+sasa|Sasa|21312332|musko|sadasdasd|1231212|sasa123|saas123|Lekar|stomatoloskaSluzba|sadasd|232.0|true

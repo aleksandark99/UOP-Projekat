@@ -2,10 +2,12 @@ package guiDodavanje;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -75,7 +77,7 @@ public class PregledDodavanjeGUI extends JFrame {
 		if(pregled != null) {
 			setTitle("Izmena podataka");
 		}else {
-			setTitle("Dodavanje pacijenata");
+			setTitle("Dodavanje pregleda");
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -142,9 +144,7 @@ public class PregledDodavanjeGUI extends JFrame {
 //				05/22/1998 14:22:33
 				String termin=txtTerminDan.getText().trim()+"/"+txtTerminMesec.getText().trim()+"/"+txtTerminGodina.getText().trim()
 						+" "+txtTerminSat.getText().trim()+":"+txtTerminMinut.getText().trim()+":"+txtTerminSekunde.getText().trim();
-				SimpleDateFormat datumisteka=new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");//DODATI VREME 
-//				termin =datumisteka.parse(termin1);
-			
+				SimpleDateFormat datumisteka=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//DODATI VREME 
 				Date Termin=null;
 				try {
 					Termin=datumisteka.parse(termin);
@@ -170,6 +170,7 @@ public class PregledDodavanjeGUI extends JFrame {
 						
 						StatusPregleda stat =StatusPregleda.valueOf((String) cbStatus.getSelectedItem());
 						pregled.setStatus(stat);
+						domzravlja.snimiPreglede("pregledi.txt");
 						//pregled.setRacun(racun);
 					}
 				PregledDodavanjeGUI.this.dispose();
@@ -203,6 +204,9 @@ public class PregledDodavanjeGUI extends JFrame {
 		txtOpis.setText(pregled.getKratak_opis());
 		int b =vratiIndex(pregled.getStatus());
 		cbStatus.setSelectedIndex(b);
+		
+		int a =vratiIndexLekara(pregled.getLekar());
+		cbLekari.setSelectedIndex(a);
 		txtBroj.setText(String.valueOf(pregled.getBroj()));
 		
 
@@ -225,7 +229,7 @@ public class PregledDodavanjeGUI extends JFrame {
 		txtTerminMinut.setText(String.valueOf(minutes));
 		txtTerminSekunde.setText(String.valueOf(seconds));
 
-		
+//		
 		
 	}
 	
@@ -233,7 +237,7 @@ public class PregledDodavanjeGUI extends JFrame {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
 		
-		
+
 
 //		if(txtKorImeLekara.getText().trim().equals("")) {
 //			poruka += "- Morate uneti korisnicko ime lekara\n";
@@ -252,6 +256,9 @@ public class PregledDodavanjeGUI extends JFrame {
 			poruka += "- Morate uneti sobu\n";
 			ok = false;
 		}
+		else {
+			
+		}
 		if(txtOpis.getText().trim().equals("")) {
 			poruka += "- Morate uneti opis\n";
 			ok = false;
@@ -263,6 +270,56 @@ public class PregledDodavanjeGUI extends JFrame {
 			poruka += "- Morate uneti termin u ispravnom formatu\n";
 			ok = false;
 		}
+		
+		else {
+			String terminstr=txtTerminDan.getText().trim()+"/"+txtTerminMesec.getText().trim()+"/"+txtTerminGodina.getText().trim()
+					+" "+txtTerminSat.getText().trim()+":"+txtTerminMinut.getText().trim()+":"+txtTerminSekunde.getText().trim();
+			//
+			Date termin=null;
+
+
+			String termin1="05/08/1998 14:23:33";
+
+			SimpleDateFormat datumisteka=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//DODATI VREME 
+			try {
+				termin =datumisteka.parse(terminstr);
+			} catch (ParseException e) {e.printStackTrace();}
+			
+			
+			 Calendar calendar1 = Calendar.getInstance();
+			 Calendar calendar2 = Calendar.getInstance();
+
+			 calendar1.setTime(termin);
+			 calendar1.add(Calendar.MINUTE, 15);
+			 
+			 calendar2.setTime(termin);
+			 calendar2.add(Calendar.MINUTE, -15);
+			
+			for (Pregled pregled : domzravlja.getPreglede()) {
+
+				if(pregled.getLekar()==domzravlja.nadjiLekara(txtKorImeLekara.getText().trim())) {
+					
+					System.out.println(pregled.getTermin());
+					System.out.println("======");
+				if(pregled.getTermin().after(calendar2.getTime())&&pregled.getTermin().before(calendar1.getTime())) {
+					System.out.println("sss");
+//					System.out.println(calendar1.getTime());
+//					System.out.println(calendar2.getTime());
+					poruka += "- Lekar ima zakazna pregled u to vreme\n";
+					ok = false;
+
+				}
+				else {
+//					System.out.println(calendar1.getTime());
+//					System.out.println(calendar2.getTime());
+					System.out.println("22");
+
+				}
+				}
+				
+				
+			}
+	}
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
@@ -286,6 +343,22 @@ public class PregledDodavanjeGUI extends JFrame {
 		}
 		return 0;
 	}
+	private int vratiIndexLekara(Lekar lekar) {
+		int i =0;
+		for(Lekar lekar1 :domzravlja.getLekare()) {
+			if(lekar1==lekar) {
+				return i;
+			}
+			else {
+				if(lekar1.isState()==true) {
+					i+=1;
+	
+				}
+			}
+	
+		}
+		return 0;
+	}
 	
 	private int brNovogPregleda() {
 		ArrayList<Pregled> zk =domzravlja.getPreglede() ;
@@ -301,7 +374,12 @@ public class PregledDodavanjeGUI extends JFrame {
 	
 	
 	
-	
+	public static Date addMinutesToJavaUtilDate(Date date, int minuts) {
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(date);
+	    calendar.add(Calendar.MINUTE, minuts);
+	    return calendar.getTime();
+	}
 	
 	
 	

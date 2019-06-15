@@ -23,11 +23,14 @@ import guiDodavanje.SestraDodavanjeGUI;
 import osobe.Medicinska_Sestra;
 import osobe.Pacijent;
 import pregled.Pregled;
+import pregled.StatusPregleda;
+import zdravstvena_knjizica.KategorijaOsiguranja;
 
 public class PreglediPrikazGUI extends JFrame {
 	private JButton btnAddPac = new JButton();
 	private JButton btnEditPac = new JButton();
 	private JButton btnDeletePac = new JButton();
+	private JButton btnRacun = new JButton();
 	
 	
 	private DefaultTableModel tableModel;
@@ -40,7 +43,7 @@ public class PreglediPrikazGUI extends JFrame {
 	
 	public  PreglediPrikazGUI(DomZdravlja domzdravlja){
 		this.domzdravlja=domzdravlja;
-		setTitle("Prikaz Sestri" );
+		setTitle("Prikaz pregleda" );
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,6 +64,9 @@ public class PreglediPrikazGUI extends JFrame {
 		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
 		btnDeletePac.setIcon(deleteIcon);
 		mainToolbar.add(btnDeletePac);
+		ImageIcon racunIcon =new ImageIcon(getClass().getResource("/slike/racun.gif.png")); 
+		btnRacun.setIcon(racunIcon);
+		mainToolbar.add(btnRacun);
 		add(mainToolbar, BorderLayout.NORTH);
 		
 		String[] zaglavlje = new String[] {"Ime pacijenta","Prezime pacijenta", "Ime Lekara","Prezime lekara","Termin","Soba","Opis","Status","Broj"};	
@@ -77,7 +83,7 @@ public class PreglediPrikazGUI extends JFrame {
 	    System.out.println(pregledActive.size());
 		for(int i=0; i<pregledActive.size(); i++) {
 			Pregled pregled = pregledActive.get(i);
-			SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+			SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			podaci[i][0] = pregled.getPacijent().getKorisnickoIme();
 			podaci[i][1] =  pregled.getPacijent().getPrezime()  ;
 			podaci[i][2] = pregled.getLekar().getIme()  ;
@@ -130,7 +136,7 @@ public class PreglediPrikazGUI extends JFrame {
 					System.out.println(id);
 //					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
 					Pregled pregled = domzdravlja.nadjiPregled(Integer.parseInt(id));
-					if(pregled != null) {
+					if(pregled != null && pregled.getStatus()!=StatusPregleda.otkazan&& pregled.getStatus()!=StatusPregleda.zavrsen ) {
 						PregledDodavanjeGUI pacADD= new PregledDodavanjeGUI(domzdravlja,pregled);
 						pacADD.setVisible(true);
 						//
@@ -139,7 +145,7 @@ public class PreglediPrikazGUI extends JFrame {
 						
 						//
 					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani pregled!", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nije moguce promeniti pregled!", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
@@ -175,6 +181,54 @@ public class PreglediPrikazGUI extends JFrame {
 					}
 				}
 				}
+			}
+		});
+		btnRacun.addActionListener(new ActionListener() {
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = pacijentTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String id = pacijentTabela.getValueAt(red, 8).toString();
+					Pregled pregled = domzdravlja.nadjiPregled(Integer.parseInt(id));
+					if(pregled != null && pregled.getStatus()==StatusPregleda.zavrsen) {
+//						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?",pregled.getBroj() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+//						if(izbor == JOptionPane.YES_OPTION) {
+							tableModel= (DefaultTableModel) pacijentTabela.getModel();
+							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
+//							if(pregled instanceof Pregled) {
+//								domzdravlja.obrisiPreglede(pregled);
+//							}
+//							domzdravlja.snimiPreglede("pregledi.txt");
+//							PreglediPrikazGUI.this.dispose();
+//							PreglediPrikazGUI.this.setVisible(false);
+//							PreglediPrikazGUI pp=new PreglediPrikazGUI(domzdravlja);
+//							pp.setVisible(true);
+							int racun =0;
+							if(pregled.getPacijent().getKnjizica().getKategorijaOsiguranja()==KategorijaOsiguranja.prva) {
+								racun=300;
+								
+							}else if(pregled.getPacijent().getKnjizica().getKategorijaOsiguranja()==KategorijaOsiguranja.druga) {
+								racun=50;
+							}
+							PrikazRacunaGUI ss = new PrikazRacunaGUI(pregled.getPacijent().getIme(), pregled.getPacijent().getPrezime(),
+									pregled.getBroj(), racun);
+							ss.setVisible(true);
+						
+						//
+//					}
+//						else {
+//						JOptionPane.showMessageDialog(null, "Nije moguce prikazati racun!", "Greska", JOptionPane.ERROR_MESSAGE);
+//					}
+				}
+					else {
+						JOptionPane.showMessageDialog(null, "Nije moguce prikazati racun!", "Greska", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
 			}
 		});
 	
