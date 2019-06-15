@@ -1,5 +1,11 @@
 pera123|marko123|16/07/2000 13:26:00|soba|zakazan|opis|0|true|1
 sasa|TestkorisnickoIme|05/08/1998 14:22:33|7D|zakazan|testopis|0|true|3
-pera123|jovac22|11/01/2019 15:15:15|asdsda|zakazan|asdsda|0|true|4
-pera123|jovac22|11/01/2019 15:55:15|asdsda|zakazan|asdasd|0|true|5
-pera123|jovac22|01/11/2019 11:55:13|asdsda|zakazan|asdasd|0|true|6
+pera123|jovac22|11/05/2019 15:20:22|12|zakazan|asdasd|0|true|4
+pera123|jovac22|11/05/2019 15:55:22|dsasda|zakazan|adads|0|true|5
+pera123|jovac22|11/05/2019 15:24:33|15|zakazan|adsads|0|false|6
+pera123|jovac22|11/05/2019 14:25:02|32|zakazan|sadasd|0|true|7
+pera123|jovac22|11/05/2019 15:25:22|2|zakazan|sad|0|false|8
+pera123|jovac22|11/05/2019 15:21:02|sd|zakazan|asd|0|true|9
+1|jovac22|11/11/2019 11:11:11|11|zakazan|sdsa|0|true|10
+1|jovac22|11/11/2019 11:12:11|11|zakazan|asd|0|false|11
+1|jovac22|11/11/2019 11:45:01|11|zavrsen|11|0|true|12

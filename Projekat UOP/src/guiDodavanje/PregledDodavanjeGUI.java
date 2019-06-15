@@ -105,7 +105,9 @@ public class PregledDodavanjeGUI extends JFrame {
 		
 		if(pregled != null) {
 			popuniPolja();
+			
 		}else {
+			cbStatus.setSelectedIndex(1);
 //			txtKorisnickoIme.setEnabled(true);
 		//	txtBrojKnjizice.setEnabled(true);// OVDE DODATI DA SE NAPRAVI I NOVA KNJIZICA 
 
@@ -294,29 +296,25 @@ public class PregledDodavanjeGUI extends JFrame {
 			 
 			 calendar2.setTime(termin);
 			 calendar2.add(Calendar.MINUTE, -15);
-			
-			for (Pregled pregled : domzravlja.getPreglede()) {
+			 ArrayList<Pregled> pregledii = new ArrayList<Pregled>();
+			 pregledii = domzravlja.getPreglede();
+//			 pregledii.remove(pregled);
+			for (Pregled pregledA : pregledii) {
+				if(pregledA != pregled ) {
+				if(pregledA.getLekar()==domzravlja.nadjiLekara(txtKorImeLekara.getText().trim())||pregled==null) {
 
-				if(pregled.getLekar()==domzravlja.nadjiLekara(txtKorImeLekara.getText().trim())) {
-					
-					System.out.println(pregled.getTermin());
-					System.out.println("======");
-				if(pregled.getTermin().after(calendar2.getTime())&&pregled.getTermin().before(calendar1.getTime())) {
-					System.out.println("sss");
-//					System.out.println(calendar1.getTime());
-//					System.out.println(calendar2.getTime());
+				if(pregledA.getTermin().after(calendar2.getTime())&&pregledA.getTermin().before(calendar1.getTime())) {
 					poruka += "- Lekar ima zakazna pregled u to vreme\n";
 					ok = false;
-
+					break;//ako puca zbog ovoga je 
 				}
 				else {
-//					System.out.println(calendar1.getTime());
-//					System.out.println(calendar2.getTime());
+
 					System.out.println("22");
 
 				}
 				}
-				
+				}
 				
 			}
 	}

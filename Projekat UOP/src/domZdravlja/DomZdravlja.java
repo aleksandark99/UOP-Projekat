@@ -158,7 +158,7 @@ public class DomZdravlja {
 				Date datumistekaknjizice =null;
 				
 				try {
-					SimpleDateFormat datumisteka=new SimpleDateFormat("dd/mm/yyyy");
+					SimpleDateFormat datumisteka=new SimpleDateFormat("dd/MM/yyyy");
 					datumistekaknjizice =datumisteka.parse(sDate);
 				}catch(Exception e){
 					
@@ -398,7 +398,7 @@ public class DomZdravlja {
 			File file = new File("src/files/" + imeFajla);
 			String content = "";
 			for (zdravstvena_knjizica knjizica : zdravstvenaKnjizice) {
-				SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				String dateString = df.format( knjizica.getDatumIsteka() );
 				
 			//	Date date = df.parse(toString(knjizica.getDatumIsteka()));

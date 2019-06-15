@@ -87,7 +87,7 @@ public class PacijentPrikazGUI extends JFrame {
 //			Pacijent pacijent = domzdravlja.getPacijente().get(i);
 			Pacijent pacijent = pacijentiActive.get(i);
 //			if (pacijent.isState()==true) {
-			SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 			podaci[i][0] = pacijent.getIme()  ;
 			podaci[i][1] = pacijent.getPrezime()  ;
 			podaci[i][2] = pacijent.getJmbg()  ;
