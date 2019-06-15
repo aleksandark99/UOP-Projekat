@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import domZdravlja.DomZdravlja;
 import guizaPrikaz.PacijentPrikazGUI;
 import guizaPrikaz.PreglediPrikazGUI;
+import guizaPrikaz.PrikazPacijentovihPregleda;
 import net.miginfocom.swing.MigLayout;
 import osobe.Lekar;
 import osobe.Pacijent;
@@ -26,7 +27,7 @@ import pregled.StatusPregleda;
 import zdravstvena_knjizica.KategorijaOsiguranja;
 import zdravstvena_knjizica.zdravstvena_knjizica;
 
-public class PregledDodavanjeGUI extends JFrame {
+public class PacijentDodajePregledGUI extends JFrame {
 	private JLabel lblKorImePacijenta= new JLabel("Korisnicko ime pacijenta");
 	private JTextField txtKorImePacijenta= new JTextField(20);
 	
@@ -63,19 +64,21 @@ public class PregledDodavanjeGUI extends JFrame {
 	
 	private DomZdravlja domzravlja;
 	private Pregled pregled;
+	private Pacijent pacijent;
 	
 	private JLabel lblempty = new JLabel();
 	
 
 
 	
-	public PregledDodavanjeGUI(DomZdravlja domzravlja,Pregled pregled) {
+	public PacijentDodajePregledGUI(DomZdravlja domzravlja,Pregled pregled,Pacijent pacijent) {
 		this.domzravlja = domzravlja;
 		this.pregled=pregled;
+		this.pacijent=pacijent;
 		if(pregled != null) {
 			setTitle("Izmena podataka");
 		}else {
-			setTitle("Dodavanje pacijenata");
+			setTitle("Dodavanje pregleda");
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -108,16 +111,16 @@ public class PregledDodavanjeGUI extends JFrame {
 		//	txtBrojKnjizice.setEnabled(true);// OVDE DODATI DA SE NAPRAVI I NOVA KNJIZICA 
 
 		}
-		add(lblKorImePacijenta);  add(txtKorImePacijenta);
-		add(lblKorImeLekara); 
-		add(cbLekari);
+//		add(lblKorImePacijenta);  add(txtKorImePacijenta);
+//		add(lblKorImeLekara); 
+//		add(cbLekari);
 		//add(txtKorImeLekara);
 		add(lblTermin);  add(txtTerminDan,"split 6"); add(txtTerminMesec); add(txtTerminGodina);add(txtTerminSat);add(txtTerminMinut);add(txtTerminSekunde);
 		//add(lblempty);
-		add(lblSoba);  add(txtSoba);
+//		add(lblSoba);  add(txtSoba);
 		add(lblOpis);  add(txtOpis);
 //		add(lblRacun); add(txtRacun);
-		add(lblStatus); add(cbStatus);
+//		add(lblStatus); add(cbStatus);
 //		add(lblBroj); add(txtBroj);
 		add(btnOk); add(btnCancel);
 		txtBroj.setEnabled(false);
@@ -133,12 +136,12 @@ public class PregledDodavanjeGUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(validacija() == true) {
-				String korImePacijenta=txtKorImePacijenta.getText().trim();
+//				String korImePacijenta=txtKorImePacijenta.getText().trim();
 //				String korimeLekara=txtKorImeLekara.getText().trim();
-				//StatusPregleda stat =StatusPregleda.valueOf((String) cbStatus.getSelectedItem());
-				String korimeLekara=(String)cbLekari.getSelectedItem();
-				Lekar lekar=domzravlja.nadjiLekara(korimeLekara);
-				Pacijent pacijent =domzravlja.nadjiPacijenta(korImePacijenta);
+//				//StatusPregleda stat =StatusPregleda.valueOf((String) cbStatus.getSelectedItem());
+//				String korimeLekara=(String)cbLekari.getSelectedItem();
+//				Lekar lekar=domzravlja.nadjiLekara(korimeLekara);
+//				Pacijent pacijent =domzravlja.nadjiPacijenta(korImePacijenta);
 //				05/22/1998 14:22:33
 				String termin=txtTerminDan.getText().trim()+"/"+txtTerminMesec.getText().trim()+"/"+txtTerminGodina.getText().trim()
 						+" "+txtTerminSat.getText().trim()+":"+txtTerminMinut.getText().trim()+":"+txtTerminSekunde.getText().trim();
@@ -153,30 +156,32 @@ public class PregledDodavanjeGUI extends JFrame {
 				
 				String kratak_opis =txtOpis.getText().trim();
 			//	int racun =Integer.parseInt(txtRacun.getText().trim());
-				String soba=txtSoba.getText().trim();
+//				String soba=txtSoba.getText().trim();
 			//	int brojA=Integer.parseInt(txtBroj.getText().trim());
 				if(pregled==null) {
 					int broj = brNovogPregleda();
-					Pregled pregled = new Pregled(pacijent, lekar, Termin, soba, StatusPregleda.zakazan, kratak_opis, 0, true,broj);
+					Pregled pregled = new Pregled(pacijent, pacijent.getIzabraniLekar(), Termin, "", StatusPregleda.zatrazen, kratak_opis, 0, true,broj);
 					domzravlja.dodajPreglede(pregled);
 					domzravlja.snimiPreglede("pregledi.txt");
 				
 					}else {
-						pregled.setLekar(lekar);
-						pregled.setPacijent(pacijent);
-						pregled.setTermin(Termin);
-						pregled.setSoba(soba);
+//						pregled.setLekar(lekar);
+//						pregled.setPacijent(pacijent);
+//						pregled.setTermin(Termin);
+//						pregled.setSoba(soba);
 						pregled.setKratak_opis(kratak_opis);
 						
 						StatusPregleda stat =StatusPregleda.valueOf((String) cbStatus.getSelectedItem());
 						pregled.setStatus(stat);
 						//pregled.setRacun(racun);
 					}
-				PregledDodavanjeGUI.this.dispose();
-				PregledDodavanjeGUI.this.setVisible(false);
-				PreglediPrikazGUI pp= new PreglediPrikazGUI(domzravlja);
-				pp.setVisible(true);
+				PacijentDodajePregledGUI.this.dispose();
+				PacijentDodajePregledGUI.this.setVisible(false);
+//				PreglediPrikazGUI pp= new PreglediPrikazGUI(domzravlja);
+//				pp.setVisible(true);
 				
+				PrikazPacijentovihPregleda pp= new PrikazPacijentovihPregleda(domzravlja,pacijent);
+				pp.setVisible(true);
 			}
 			
 		}
@@ -186,9 +191,11 @@ public class PregledDodavanjeGUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			PregledDodavanjeGUI.this.dispose();
-			PregledDodavanjeGUI.this.setVisible(false);
-			PreglediPrikazGUI pp= new PreglediPrikazGUI(domzravlja);
+			PacijentDodajePregledGUI.this.dispose();
+			PacijentDodajePregledGUI.this.setVisible(false);
+//			PreglediPrikazGUI pp= new PreglediPrikazGUI(domzravlja);
+//			pp.setVisible(true);
+			PrikazPacijentovihPregleda pp= new PrikazPacijentovihPregleda(domzravlja,pacijent);
 			pp.setVisible(true);
 		}
 	});
@@ -196,19 +203,27 @@ public class PregledDodavanjeGUI extends JFrame {
 	
 	
 	private void popuniPolja() {
-		txtKorImeLekara.setText(pregled.getLekar().getKorisnickoIme());
-		txtKorImePacijenta.setText(pregled.getPacijent().getKorisnickoIme());
-		txtSoba.setText(pregled.getSoba());
-		txtRacun.setText(String.valueOf(pregled.getRacun()));
+//		txtKorImeLekara.setText(pregled.getLekar().getKorisnickoIme());
+//		txtKorImePacijenta.setText(pregled.getPacijent().getKorisnickoIme());
+//		txtSoba.setText(pregled.getSoba());
+//		txtRacun.setText(String.valueOf(pregled.getRacun()));
 		txtOpis.setText(pregled.getKratak_opis());
 		int b =vratiIndex(pregled.getStatus());
 		cbStatus.setSelectedIndex(b);
 		txtBroj.setText(String.valueOf(pregled.getBroj()));
 		
-
-		txtKorImePacijenta.setEnabled(false);
-		txtRacun.setEnabled(false);
-		txtOpis.setEnabled(false);
+		if(pregled.getStatus()!=StatusPregleda.zatrazen) {
+			txtOpis.setEnabled(false);
+		}
+		txtTerminDan.setEnabled(false);
+		txtTerminMesec.setEnabled(false);
+		txtTerminGodina.setEnabled(false);
+		txtTerminSat.setEnabled(false);
+		txtTerminMinut.setEnabled(false);
+		txtTerminSekunde.setEnabled(false);
+//		txtKorImePacijenta.setEnabled(false);
+//		txtRacun.setEnabled(false);
+//		txtOpis.setEnabled(false);
 		
 		LocalDate localDate = pregled.getTermin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		int year  = localDate.getYear();
@@ -239,19 +254,19 @@ public class PregledDodavanjeGUI extends JFrame {
 //			poruka += "- Morate uneti korisnicko ime lekara\n";
 //			ok = false;
 //		}
-		if(txtKorImePacijenta.getText().trim().equals("")) {
-			poruka += "- Morate uneti korisnicko ime pacijenta\n";
-			ok = false;
-		}
-		Pacijent pacijent =domzravlja.nadjiPacijenta(txtKorImePacijenta.getText().trim());
-		if(pacijent==null) {
-			poruka += "- Morate uneti postojece korisnicko ime pacijenta\n";
-			ok = false;
-		}
-		if(txtSoba.getText().trim().equals("")) {
-			poruka += "- Morate uneti sobu\n";
-			ok = false;
-		}
+//		if(txtKorImePacijenta.getText().trim().equals("")) {
+//			poruka += "- Morate uneti korisnicko ime pacijenta\n";
+//			ok = false;
+//		}
+//		Pacijent pacijent =domzravlja.nadjiPacijenta(txtKorImePacijenta.getText().trim());
+//		if(pacijent==null) {
+//			poruka += "- Morate uneti postojece korisnicko ime pacijenta\n";
+//			ok = false;
+//		}
+//		if(txtSoba.getText().trim().equals("")) {
+//			poruka += "- Morate uneti sobu\n";
+//			ok = false;
+//		}
 		if(txtOpis.getText().trim().equals("")) {
 			poruka += "- Morate uneti opis\n";
 			ok = false;

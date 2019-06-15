@@ -3,4 +3,7 @@ TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|tr
 TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|true|3
 TestkorisnickoIme|TestkorisnickoIme|05/22/1998 14:22:33|7D|zakazan|testopis|0|true|4
 pera123|marko123|15/22/2019 14:22:00|3|zakazan|dsaasd|22|true|5
-pera123|S|15/05/2019 05:05:05|23|zakazan|aasdsd|22|true|6
+pera123|S|15/05/2019 05:05:05|23|zakazan|aasdsd|22|false|6
+1|S|11/11/2019 11:11:11|11|otkazan|11|0|true|7
+1|TestkorisnickoIme|12/12/2020 12:12:12||zavrsen|243242|0|true|8
+1|TestkorisnickoIme|15/02/2019 22:02:23||otkazan|nemaasdasdsad|0|true|9

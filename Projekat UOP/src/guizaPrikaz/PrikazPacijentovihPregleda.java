@@ -17,14 +17,16 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import domZdravlja.DomZdravlja;
+import guiDodavanje.PacijentDodajePregledGUI;
 import guiDodavanje.PacijentDodavanjeGUI;
 import guiDodavanje.PregledDodavanjeGUI;
 import guiDodavanje.SestraDodavanjeGUI;
 import osobe.Medicinska_Sestra;
 import osobe.Pacijent;
 import pregled.Pregled;
+import pregled.StatusPregleda;
 
-public class PreglediPrikazGUI extends JFrame {
+public class PrikazPacijentovihPregleda extends JFrame {
 	private JButton btnAddPac = new JButton();
 	private JButton btnEditPac = new JButton();
 	private JButton btnDeletePac = new JButton();
@@ -37,10 +39,12 @@ public class PreglediPrikazGUI extends JFrame {
 
 	
 	private DomZdravlja domzdravlja;
+	private Pacijent pacijent;
 	
-	public  PreglediPrikazGUI(DomZdravlja domzdravlja){
+	public  PrikazPacijentovihPregleda(DomZdravlja domzdravlja,Pacijent pacijent){
 		this.domzdravlja=domzdravlja;
-		setTitle("Prikaz Sestri" );
+		this.pacijent=pacijent;
+		setTitle("Prikaz mojih pregleda" );
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -66,7 +70,7 @@ public class PreglediPrikazGUI extends JFrame {
 		String[] zaglavlje = new String[] {"Ime pacijenta","Prezime pacijenta", "Ime Lekara","Prezime lekara","Termin","Soba","Opis","Status","Broj"};	
 	    ArrayList<Pregled> pregledActive = new ArrayList<Pregled>();
 	    for (Pregled pregled: domzdravlja.getPreglede()) {
-	    	if (pregled.isState()==true) {
+	    	if (pregled.isState()==true && pregled.getPacijent()==pacijent) {
 	    		pregledActive.add(pregled);
 	    	}
 	    	else {
@@ -111,10 +115,10 @@ public class PreglediPrikazGUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PregledDodavanjeGUI ss= new PregledDodavanjeGUI(domzdravlja,null);
+				PacijentDodajePregledGUI ss= new PacijentDodajePregledGUI(domzdravlja,null,pacijent);
 				ss.setVisible(true);/////////////////////////////////////////////////////////////////////METODE ZA DODAVANJE SESTRE
-				PreglediPrikazGUI.this.dispose();
-				PreglediPrikazGUI.this.setVisible(false);
+				PrikazPacijentovihPregleda.this.dispose();
+				PrikazPacijentovihPregleda.this.setVisible(false);
 				
 			}
 		});
@@ -131,11 +135,11 @@ public class PreglediPrikazGUI extends JFrame {
 //					Pacijent pacijent = domzdravlja.nadjiPacijenta(id);
 					Pregled pregled = domzdravlja.nadjiPregled(Integer.parseInt(id));
 					if(pregled != null) {
-						PregledDodavanjeGUI pacADD= new PregledDodavanjeGUI(domzdravlja,pregled);
+						PacijentDodajePregledGUI pacADD= new PacijentDodajePregledGUI(domzdravlja,pregled,pacijent);
 						pacADD.setVisible(true);
 						//
-						PreglediPrikazGUI.this.dispose();
-						PreglediPrikazGUI.this.setVisible(false);
+						PrikazPacijentovihPregleda.this.dispose();
+						PrikazPacijentovihPregleda.this.setVisible(false);
 						
 						//
 					}else {
@@ -155,18 +159,20 @@ public class PreglediPrikazGUI extends JFrame {
 				}else {
 					String id = pacijentTabela.getValueAt(red, 8).toString();
 					Pregled pregled = domzdravlja.nadjiPregled(Integer.parseInt(id));
-					if(pregled != null) {
-						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete pacijenta?",pregled.getBroj() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(pregled != null &&pregled.getStatus()!=StatusPregleda.zavrsen &&pregled.getStatus()!=StatusPregleda.otkazan ) {
+						int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da otkazete pregled?",pregled.getBroj() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 						if(izbor == JOptionPane.YES_OPTION) {
 							tableModel= (DefaultTableModel) pacijentTabela.getModel();
 							//DefaultTableModel model = (DefaultTableModel) pacijentTabela.getModel();
-							if(pregled instanceof Pregled) {
-								domzdravlja.obrisiPreglede(pregled);
+							if(pregled instanceof Pregled && pregled.getStatus()!=StatusPregleda.zavrsen) {
+//								domzdravlja.obrisiPreglede(pregled);
+								pregled.setStatus(StatusPregleda.otkazan);
+								domzdravlja.snimiPreglede("pregledi.txt");
 							}
 							domzdravlja.snimiPreglede("pregledi.txt");
-							PreglediPrikazGUI.this.dispose();
-							PreglediPrikazGUI.this.setVisible(false);
-							PreglediPrikazGUI pp=new PreglediPrikazGUI(domzdravlja);
+							PrikazPacijentovihPregleda.this.dispose();
+							PrikazPacijentovihPregleda.this.setVisible(false);
+							PrikazPacijentovihPregleda pp=new PrikazPacijentovihPregleda(domzdravlja,pacijent);
 							pp.setVisible(true);
 						
 						//

@@ -110,7 +110,7 @@ public class LoginWindow extends JFrame {
 						if(pacijent.isState()==true && pacijent.getKorisnickoIme().equals(korisnickoIme) && pacijent.getLozinka().equals(sifra)) {
 							// Uspesno logovanje:
 							// 1. Sakrijemo login prozor
-							GlavniProzorPacijenta gpPac = new GlavniProzorPacijenta();
+							GlavniProzorPacijenta gpPac = new GlavniProzorPacijenta(domzdravlja,pacijent);
 							gpPac.setVisible(true);
 						
 							LoginWindow.this.setVisible(false);
