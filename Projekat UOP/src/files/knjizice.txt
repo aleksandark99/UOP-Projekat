@@ -13,3 +13,7 @@
 21|16/06/2019|druga|true
 22|16/06/2019|treca|true
 22|16/06/2019|treca|true
+23|16/06/2020|prva|true
+23|16/06/2020|prva|true
+24|16/06/2020|prva|true
+24|16/06/2020|prva|true

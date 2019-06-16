@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -263,7 +264,7 @@ public class PacijentDodavanjeGUI extends JFrame {
 			ok = false;
 		}
 		Lekar lekar=domzravlja.nadjiLekara(txtKorImeIzabranogLekara.getText().trim());
-		if( lekar !=null) {
+		if( lekar !=null &&lekar.isState()==true) {
 			
 		}
 		else {
@@ -304,7 +305,12 @@ public class PacijentDodavanjeGUI extends JFrame {
 		
 		int broh = brNoveKnjizice();
 		Date datumIsteka = new Date();
-
+		
+		Calendar calendar1 = Calendar.getInstance();
+		 calendar1.setTime(datumIsteka);
+		 calendar1.add(Calendar.YEAR, 1);
+		 datumIsteka=calendar1.getTime();
+		
 		DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		SimpleDateFormat sdg= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		sdg.format(datumIsteka);
