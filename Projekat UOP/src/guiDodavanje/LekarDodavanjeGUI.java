@@ -17,6 +17,7 @@ import guizaPrikaz.SestrePrikazGUI;
 import net.miginfocom.swing.MigLayout;
 import osobe.Lekar;
 import osobe.Medicinska_Sestra;
+import osobe.Pacijent;
 import osobe.Sluzba;
 import osobe.Uloga;
 
@@ -196,6 +197,16 @@ public class LekarDodavanjeGUI extends JFrame {
 	private boolean validacija() {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
+		
+		if(lekar==null) {
+			for(Lekar a:domzravlja.getLekare()) {
+				if(a.getKorisnickoIme().equals(txtKorisnickoIme.getText().trim())) {
+					poruka += "-Zauzeto korisnicko ime\n";
+					ok = false;
+					break;
+				}
+			}
+		}
 		
 		if(txtIme.getText().trim().equals("")) {
 			poruka += "- Morate uneti ime\n";

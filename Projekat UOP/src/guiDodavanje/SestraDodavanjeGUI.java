@@ -195,6 +195,16 @@ public class SestraDodavanjeGUI extends JFrame {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
 		
+		if(sestra==null) {
+			for(Medicinska_Sestra a:domzravlja.getSestre()) {
+				if(a.getKorisnickoIme().equals(txtKorisnickoIme.getText().trim())) {
+					poruka += "-Zauzeto korisnicko ime\n";
+					ok = false;
+					break;
+				}
+			}
+		}
+		
 		if(txtIme.getText().trim().equals("")) {
 			poruka += "- Morate uneti ime\n";
 			ok = false;

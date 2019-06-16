@@ -219,6 +219,15 @@ public class PacijentDodavanjeGUI extends JFrame {
 	private boolean validacija() {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
+		if(pacijent==null) {
+			for(Pacijent a:domzravlja.getPacijente()) {
+				if(a.getKorisnickoIme().equals(txtKorisnickoIme.getText().trim())) {
+					poruka += "-Zauzeto korisnicko ime\n";
+					ok = false;
+					break;
+				}
+			}
+		}
 		
 		if(txtIme.getText().trim().equals("")) {
 			poruka += "- Morate uneti ime\n";

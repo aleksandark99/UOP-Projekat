@@ -2,3 +2,4 @@ marko|maric|JMBG|pol|adresa|brojTelefona|marko123|Lozinka|Lekar|sluzbaOpsteMedic
 jovan|jovic|123313|pol|adresa|brojTelefona|jovac22|Lozinka|Lekar|sluzbaOpsteMedicine|specijalizacija|200.0|true
 testimeLekara|testprezime|12321|musko|perdobrica 13|022 555-888|TestkorisnickoIme|Testlozinka|Lekar|sluzbaOpsteMedicine|Test specijalizacija|300.0|true
 sasa|Sasa|21312332|musko|sadasdasd|1231212|sasa123|saas123|Lekar|stomatoloskaSluzba|sadasd|232.0|true
+ads|asdsda|adssda|asdasd|asddsa|asdsda|marko12333|asdasd|Lekar|SluzbaZdravstveneZastiteDece|asdsda|42342.0|true

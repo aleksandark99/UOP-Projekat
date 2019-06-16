@@ -1,7 +1,9 @@
-pera|peric|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|Pacijent|marko123|1|true
+pera|peric|JMBG|pol|adresa|brojTelefona|pera123|Lozinka|Pacijent|marko123|1|false
 danilo|danic|JMBG|pol|adresa|brojTelefona|dane123|Lozinka|Pacijent|jovac22|13|true
 testimePacijenta|testprezime|12321|zensko|perdobrica 13|022 555-888|sasa|sasa|Pacijent|TestkorisnickoIme|15|false
 popo|popo|3223434|musko|asdasdasd|12312321|popo123|asdasd|Pacijent|marko123|16|true
 popo23132|popo|212112|sdadas|asddssda|321321321|sasdasda|asdasddas|Pacijent|jovac22|17|true
 1|1|JMBG|pol|adresa|brojTelefona|1|1|Pacijent|marko123|1|false
 restGUI|restGUI|2321|asdsa|saddsa|123232|restGUI|restGUI|Pacijent|marko123|20|true
+dsadas|asdsda|231321|asddsa|adsasd|2332112|pera123|asdasd|Pacijent|marko123|21|true
+asdasd|asddas|232|asdasd|asdsd|2343|pera123555|asddsa|Pacijent|marko123|22|true
