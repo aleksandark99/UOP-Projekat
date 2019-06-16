@@ -300,7 +300,8 @@ public class PregledDodavanjeGUI extends JFrame {
 			 pregledii = domzravlja.getPreglede();
 //			 pregledii.remove(pregled);
 			for (Pregled pregledA : pregledii) {
-				if(pregledA != pregled ) {
+			///&&pregledA.getStatus()!=StatusPregleda.zavrsen za slucaj slucaja xD
+				if(pregledA != pregled && pregledA.isState()==true ) {
 				if(pregledA.getLekar()==domzravlja.nadjiLekara(txtKorImeLekara.getText().trim())||pregled==null) {
 
 				if(pregledA.getTermin().after(calendar2.getTime())&&pregledA.getTermin().before(calendar1.getTime())) {

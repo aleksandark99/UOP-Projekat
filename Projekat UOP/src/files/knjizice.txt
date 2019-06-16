@@ -1,7 +1,11 @@
-1|15/12/2002|prva|true
+1|15/12/2002|prva|false
 13|15/12/2002|prva|true
 15|05/10/2026|druga|false
 16|15/02/2019|treca|true
 16|15/02/2019|treca|true
 17|15/06/2019|druga|true
 17|15/06/2019|druga|true
+18|16/06/2019|druga|true
+19|16/06/2019|druga|true
+20|16/06/2019|treca|true
+20|16/06/2019|treca|true
